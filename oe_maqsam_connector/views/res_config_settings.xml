@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_maqsam" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.maqsam</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//form" position="inside"> -->
+                <xpath expr="//div[@name='integration']" position="after">
+                    <div class="app_settings_block" data-string="Maqsam Integration" string="Maqsam Integration" data-key="maqsam_integration">
+                        <h2>Maqsam API Settings</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="maqsam_access_key"/>
+                                    <div class="text-muted">
+                                        Your unique Maqsam API Access Key.
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="maqsam_access_key"/>
+                                    </div>
+                                    <label for="maqsam_access_secret"/>
+                                    <div class="text-muted">
+                                        Your unique Maqsam API Access Secret.
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="maqsam_access_secret" password="True"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="maqsam_base_api_url_v1"/>
+                                    <div class="text-muted">
+                                        Base URL for Maqsam API v1 (e.g., https://api.maqsam.com/v1).
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="maqsam_base_api_url_v1"/>
+                                    </div>
+                                    <label for="maqsam_base_api_url_v2"/>
+                                    <div class="text-muted">
+                                        Base URL for Maqsam API v2 (e.g., https://api.maqsam.com/v2).
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="maqsam_base_api_url_v2"/>
+                                    </div>
+                                    <label for="maqsam_portal_base_url"/>
+                                    <div class="text-muted">
+                                        Base URL for Maqsam Portal (e.g., https://portal.maqsam.com).
+                                    </div>
+                                    <div class="content-group">
+                                        <field name="maqsam_portal_base_url"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
