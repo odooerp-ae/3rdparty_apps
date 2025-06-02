@@ -1,0 +1,163 @@
+<odoo>
+    <!-- List View for Call ERP -->
+    <record model="ir.ui.view" id="view_maqsam_call_list">
+        <field name="name">call_erp list</field>
+        <field name="model">call.erp</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="contact_name"/>
+                <field name="agent_email"/>
+                <field name="phone"/>
+                <field name="caller"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View for Call ERP -->
+    <record id="view_maqsam_call_form" model="ir.ui.view">
+        <field name="name">maqsam.call.form</field>
+        <field name="model">call.erp</field>
+        <field name="arch" type="xml">
+            <form string="Maqsam Call">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="contact_name" required="1"/>
+                            <field name="agent_email"/>
+                        </group>
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="caller"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Dialer List View -->
+    <record model="ir.ui.view" id="view_maqsam_call_dialer_list">
+        <field name="name">API Dialer List</field>
+        <field name="model">call.dialer</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="phone"/>
+                <field name="caller"/>
+                <button name="create_call_dialer"
+                        string="Auto Dial"
+                        type="object"
+                        class="btn btn-primary"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Dialer Form View -->
+    <record id="view_maqsam_call_dialer_form" model="ir.ui.view">
+        <field name="name">Api Dialer Form</field>
+        <field name="model">call.dialer</field>
+        <field name="arch" type="xml">
+            <form string="Maqsam Call">
+                <sheet>
+                    <group>
+                        <field name="phone" widget="phone"/>
+                        <field name="caller"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Call ERP -->
+    <record model="ir.actions.act_window" id="action_call_erp_odoo">
+        <field name="name">Contact Information</field>
+        <field name="res_model">call.erp</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Action for API Dialer -->
+    <record id="action_dial_auto" model="ir.actions.act_window">
+        <field name="name">API Dialer</field>
+        <field name="res_model">call.dialer</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Wizard Form View for List of Contacts -->
+    <record id="view_list_contact_form" model="ir.ui.view">
+        <field name="name">list.contact.form</field>
+        <field name="model">list.contact</field>
+        <field name="arch" type="xml">
+            <form string="Wizard Call">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <field name="contact_ids" widget="many2many_list">
+                                                <list no_open="1" editable="bottom" create="0">
+                                                    <field name="contact_name"/>
+                                                    <field name="agent_email"/>
+                                                    <field name="phone"/>
+                                                    <field name="caller"/>
+                                                    <button name="create_call"
+                                                            string="Call"
+                                                            type="object"
+                                                            class="btn btn-primary"/>
+                                                </list>
+                                            </field>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button string="Close"
+                                            class="btn btn-secondary"
+                                            special="cancel"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_list_of_contacts" model="ir.actions.act_window">
+        <field name="name">List of Contact</field>
+        <field name="res_model">list.contact</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_list_contact_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem name="Maqsam API"
+              id="menu_root"
+              sequence="100"
+              web_icon="oe_maqsam_connector,static/description/icon_maqsam_imresizer.png">
+        
+        <menuitem name="User"
+                  id="menu_1"
+                  sequence="10"
+                  action="action_call_erp_odoo"/>
+
+        <menuitem name="Call API"
+                  id="menu_2"
+                  sequence="20"
+                  action="action_list_of_contacts"/>
+
+        <menuitem name="Auto Dial API"
+                  id="menu_3"
+                  sequence="30"
+                  action="action_dial_auto"/>
+
+        <menuitem id="menu_maqsam_agent"
+                  name="Maqsam Agents API"
+                  action="action_maqsam_agent"/>
+
+        <menuitem id="menu_maqsam_auto_login"
+                  name="Maqsam Auto Login"
+                  action="action_maqsam_auto_login"/>
+    </menuitem>
+</odoo>

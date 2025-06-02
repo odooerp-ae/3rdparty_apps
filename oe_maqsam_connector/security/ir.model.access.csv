@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_call_erp,call_erp,model_call_erp,base.group_user,1,1,1,1
+access_list_contact,list_contact,model_list_contact,base.group_user,1,1,1,1
+access_call_dialer,call_dialer,model_call_dialer,base.group_user,1,1,1,1
+access_auto_login,auto_login,model_auto_login,base.group_user,1,1,1,1
+access_api_agent,api_agent,model_api_agent,base.group_user,1,1,1,1

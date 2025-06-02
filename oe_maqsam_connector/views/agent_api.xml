@@ -1,0 +1,128 @@
+<odoo>
+    <!-- List View for Maqsam Agent -->
+    <record id="view_maqsam_agent_tree" model="ir.ui.view">
+        <field name="name">maqsam.agent.tree</field>
+        <field name="model">api.agent</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="identifier"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="active"/>
+                <field name="groups"/>
+                <field name="outgoing_enabled"/>
+                <field name="incoming_enabled"/>
+                <field name="whatsapp_enabled"/>
+                <field name="state"/>
+                <field name="state_start_time"/>
+                <field name="created_at"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- List View Inheritance for Button -->
+    <record id="view_maqsam_agent_tree_inherit" model="ir.ui.view">
+        <field name="name">api.agent.view.tree</field>
+        <field name="model">api.agent</field>
+        <field name="inherit_id" ref="oe_maqsam_connector.view_maqsam_agent_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <header>
+                    <button name="fetch_agents"
+                            type="object"
+                            class="btn oe_highlight o_appointment_select_slots"
+                            string="Fetch Agents"/>
+                </header>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Form View for Maqsam Agent -->
+    <record id="view_maqsam_agent_form" model="ir.ui.view">
+        <field name="name">maqsam.agent.form</field>
+        <field name="model">api.agent</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="identifier"/>
+                            <field name="name"/>
+                            <field name="email"/>
+                            <field name="active"/>
+                            <field name="groups"/>
+                            <field name="outgoing_enabled"/>
+                        </group>
+                        <group>
+                            <field name="incoming_enabled"/>
+                            <field name="whatsapp_enabled"/>
+                            <field name="state"/>
+                            <field name="state_start_time"/>
+                            <field name="created_at"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Maqsam Agents -->
+    <record id="action_maqsam_agent" model="ir.actions.act_window">
+        <field name="name">Maqsam Agents</field>
+        <field name="res_model">api.agent</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Form View for Auto Login -->
+    <record id="view_maqsam_auto_login_form" model="ir.ui.view">
+        <field name="name">auto.login.form</field>
+        <field name="model">auto.login</field>
+        <field name="arch" type="xml">
+            <form string="Maqsam Auto Login">
+                <sheet>
+                    <group>
+                        <field name="user_email"/>
+                        <field name="auth_token" readonly="1"/>
+                    </group>
+                    <footer>
+                        <button string="Get Auth Token"
+                                type="object"
+                                name="get_auth_token"
+                                class="btn-primary"/>
+                        <button string="Auto Login"
+                                type="object"
+                                name="auto_login"
+                                class="btn-success"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View for Auto Login -->
+    <record id="view_maqsam_auto_login_tree" model="ir.ui.view">
+        <field name="name">auto.login.tree</field>
+        <field name="model">auto.login</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="user_email"/>
+                <field name="auth_token" readonly="1"/>
+                <button string="Get Auth Token"
+                        type="object"
+                        name="get_auth_token"
+                        class="btn-primary"/>
+                <button string="Auto Login"
+                        type="object"
+                        name="auto_login"
+                        class="btn-success"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action for Auto Login -->
+    <record id="action_maqsam_auto_login" model="ir.actions.act_window">
+        <field name="name">Maqsam Auto Login</field>
+        <field name="res_model">auto.login</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
