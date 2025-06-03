@@ -118,7 +118,8 @@
             <p class="lead"><strong>1. Installation & Configuration:</strong></p>
             <ul>
                 <li>Install the 'Maqsam Integration' module from Odoo Apps.</li>
-                <li>Navigate to `Settings > General Settings > Maqsam Integration`.</li>
+                <li>Navigate to `Settings > General Settings`.</li>
+                <li>Scroll down or look for the "Maqsam Integration" section.</li>
                 <li>Enter your `Maqsam Access Key` and `Maqsam Access Secret`.</li>
                 <li>Verify the `Maqsam API Base URL (v1)`, `Maqsam API Base URL (v2)`, and `Maqsam Portal Base URL`. Default values are usually sufficient.</li>
                 <li>Click "Save".</li>
@@ -126,24 +127,37 @@
 
             <p class="lead mt-4"><strong>2. Agent Synchronization:</strong></p>
             <ul>
-                <li>Go to `Maqsam > Maqsam Agents`.</li>
-                <li>Click the "Fetch Maqsam Agents" button to synchronize agent data from Maqsam to Odoo. This will create or update agent records with their latest status and details.</li>
+                <li>Go to `Maqsam API` menu in the Odoo sidebar.</li>
+                <li>Select `Maqsam Agents API`.</li>
+                <li>In the list view, click the "Fetch Agents" button to synchronize agent data from Maqsam to Odoo. This will create or update agent records with their latest status and details.</li>
             </ul>
 
             <p class="lead mt-4"><strong>3. Initiating Calls (Click-to-Call):</strong></p>
             <ul>
-                <li>Go to any `Contact` record in Odoo that has a phone number.</li>
-                <li>Click on the "Initiate Maqsam Call" button (or similar action, depending on where it's implemented).</li>
-                <li>A pop-up will show the call initiation status.</li>
-                <li>Alternatively, from `Maqsam > Dialer Call`, you can manually enter a phone number and click "Create Dialer Call" to open the Maqsam web dialer.</li>
+                <li>To initiate a call from a pre-existing contact in Odoo:
+                    <ul>
+                        <li>Go to `Maqsam API > User`.</li>
+                        <li>Create a new record or select an existing one. Ensure the `Contact` and `Phone Number` fields are populated.</li>
+                        <li>Click on the "Call" button next to the contact in the list view (available in `Maqsam API > Call API` which shows "List of Contact").</li>
+                    </ul>
+                </li>
+                <li>To use the Maqsam Dialer for direct calls:
+                    <ul>
+                        <li>Go to `Maqsam API > Auto Dial API`.</li>
+                        <li>Create a new record.</li>
+                        <li>Enter the `Phone Number` you wish to dial. Optionally, enter a `Caller Name`.</li>
+                        <li>Click "Auto Dial" in the list view to open the Maqsam web dialer in a new tab.</li>
+                    </ul>
+                </li>
             </ul>
 
             <p class="lead mt-4"><strong>4. Maqsam Portal Auto-Login:</strong></p>
             <ul>
-                <li>Go to `Maqsam > Auto Login Users`.</li>
-                <li>Create a new record and enter the `User Email` corresponding to a Maqsam agent.</li>
-                <li>Click "Get Auth Token". This will retrieve a temporary authentication token.</li>
-                <li>Click "Auto Login" to be securely redirected to the Maqsam portal without needing to enter credentials manually.</li>
+                <li>Go to `Maqsam API > Maqsam Auto Login`.</li>
+                <li>Create a new record.</li>
+                <li>Enter the `User Email` corresponding to a Maqsam agent.</li>
+                <li>Click the "Get Auth Token" button. This will retrieve a temporary authentication token from Maqsam. The `Auth Token` field will be populated.</li>
+                <li>Click the "Auto Login" button to be securely redirected to the Maqsam portal without needing to enter credentials manually.</li>
             </ul>
         </div>
     </div>
