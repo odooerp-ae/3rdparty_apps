@@ -5,17 +5,17 @@
         <field name="model">api.agent</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="identifier"/>
-                <field name="name"/>
-                <field name="email"/>
-                <field name="active"/>
-                <field name="groups"/>
-                <field name="outgoing_enabled"/>
-                <field name="incoming_enabled"/>
-                <field name="whatsapp_enabled"/>
-                <field name="state"/>
-                <field name="state_start_time"/>
-                <field name="created_at"/>
+                <field name="identifier" />
+                <field name="name" />
+                <field name="email" />
+                <field name="active" />
+                <field name="groups" />
+                <field name="outgoing_enabled" />
+                <field name="incoming_enabled" />
+                <field name="whatsapp_enabled" />
+                <field name="state" />
+                <field name="state_start_time" />
+                <field name="created_at" />
             </tree>
         </field>
     </record>
@@ -24,14 +24,16 @@
     <record id="view_maqsam_agent_tree_inherit" model="ir.ui.view">
         <field name="name">api.agent.view.tree</field>
         <field name="model">api.agent</field>
-        <field name="inherit_id" ref="oe_maqsam_connector.view_maqsam_agent_tree"/>
+        <field name="inherit_id" ref="oe_maqsam_connector.view_maqsam_agent_tree" />
         <field name="arch" type="xml">
             <xpath expr="//tree" position="inside">
                 <header>
-                    <button name="fetch_agents"
-                            type="object"
-                            class="btn oe_highlight o_appointment_select_slots"
-                            string="Fetch Agents"/>
+                    <button
+                        name="fetch_agents"
+                        type="object"
+                        class="btn oe_highlight o_appointment_select_slots"
+                        string="Fetch Agents"
+                    />
                 </header>
             </xpath>
         </field>
@@ -46,19 +48,19 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="identifier"/>
-                            <field name="name"/>
-                            <field name="email"/>
-                            <field name="active"/>
-                            <field name="groups"/>
-                            <field name="outgoing_enabled"/>
+                            <field name="identifier" />
+                            <field name="name" />
+                            <field name="email" />
+                            <field name="active" />
+                            <field name="groups" />
+                            <field name="outgoing_enabled" />
                         </group>
                         <group>
-                            <field name="incoming_enabled"/>
-                            <field name="whatsapp_enabled"/>
-                            <field name="state"/>
-                            <field name="state_start_time"/>
-                            <field name="created_at"/>
+                            <field name="incoming_enabled" />
+                            <field name="whatsapp_enabled" />
+                            <field name="state" />
+                            <field name="state_start_time" />
+                            <field name="created_at" />
                         </group>
                     </group>
                 </sheet>
@@ -81,18 +83,22 @@
             <form string="Maqsam Auto Login">
                 <sheet>
                     <group>
-                        <field name="user_email"/>
-                        <field name="auth_token" readonly="1"/>
+                        <field name="user_email" />
+                        <field name="auth_token" readonly="1" />
                     </group>
                     <footer>
-                        <button string="Get Auth Token"
-                                type="object"
-                                name="get_auth_token"
-                                class="btn-primary"/>
-                        <button string="Auto Login"
-                                type="object"
-                                name="auto_login"
-                                class="btn-success"/>
+                        <button
+                            string="Get Auth Token"
+                            type="object"
+                            name="get_auth_token"
+                            class="btn-primary"
+                        />
+                        <button
+                            string="Auto Login"
+                            type="object"
+                            name="auto_login"
+                            class="btn-success"
+                        />
                     </footer>
                 </sheet>
             </form>
@@ -105,16 +111,20 @@
         <field name="model">auto.login</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="user_email"/>
-                <field name="auth_token" readonly="1"/>
-                <button string="Get Auth Token"
-                        type="object"
-                        name="get_auth_token"
-                        class="btn-primary"/>
-                <button string="Auto Login"
-                        type="object"
-                        name="auto_login"
-                        class="btn-success"/>
+                <field name="user_email" />
+                <field name="auth_token" readonly="1" />
+                <button
+                    string="Get Auth Token"
+                    type="object"
+                    name="get_auth_token"
+                    class="btn-primary"
+                />
+                <button
+                    string="Auto Login"
+                    type="object"
+                    name="auto_login"
+                    class="btn-success"
+                />
             </tree>
         </field>
     </record>

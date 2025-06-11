@@ -5,10 +5,10 @@
         <field name="model">call.erp</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="contact_name"/>
-                <field name="agent_email"/>
-                <field name="phone"/>
-                <field name="caller"/>
+                <field name="contact_name" />
+                <field name="agent_email" />
+                <field name="phone" />
+                <field name="caller" />
             </tree>
         </field>
     </record>
@@ -22,12 +22,12 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="contact_name" required="1"/>
-                            <field name="agent_email"/>
+                            <field name="contact_name" required="1" />
+                            <field name="agent_email" />
                         </group>
                         <group>
-                            <field name="phone" widget="phone"/>
-                            <field name="caller"/>
+                            <field name="phone" widget="phone" />
+                            <field name="caller" />
                         </group>
                     </group>
                 </sheet>
@@ -41,12 +41,14 @@
         <field name="model">call.dialer</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="phone"/>
-                <field name="caller"/>
-                <button name="create_call_dialer"
-                        string="Auto Dial"
-                        type="object"
-                        class="btn btn-primary"/>
+                <field name="phone" />
+                <field name="caller" />
+                <button
+                    name="create_call_dialer"
+                    string="Auto Dial"
+                    type="object"
+                    class="btn btn-primary"
+                />
             </tree>
         </field>
     </record>
@@ -59,8 +61,8 @@
             <form string="Maqsam Call">
                 <sheet>
                     <group>
-                        <field name="phone" widget="phone"/>
-                        <field name="caller"/>
+                        <field name="phone" widget="phone" />
+                        <field name="caller" />
                     </group>
                 </sheet>
             </form>
@@ -94,25 +96,36 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <field name="contact_ids" widget="many2many_list">
-                                                <tree no_open="1" editable="bottom" create="0">
-                                                    <field name="contact_name"/>
-                                                    <field name="agent_email"/>
-                                                    <field name="phone"/>
-                                                    <field name="caller"/>
-                                                    <button name="create_call"
-                                                            string="Call"
-                                                            type="object"
-                                                            class="btn btn-primary"/>
+                                            <field
+                                                name="contact_ids"
+                                                widget="many2many_list"
+                                            >
+                                                <tree
+                                                    no_open="1"
+                                                    editable="bottom"
+                                                    create="0"
+                                                >
+                                                    <field name="contact_name" />
+                                                    <field name="agent_email" />
+                                                    <field name="phone" />
+                                                    <field name="caller" />
+                                                    <button
+                                                        name="create_call"
+                                                        string="Call"
+                                                        type="object"
+                                                        class="btn btn-primary"
+                                                    />
                                                 </tree>
                                             </field>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer text-right">
-                                    <button string="Close"
-                                            class="btn btn-secondary"
-                                            special="cancel"/>
+                                    <button
+                                        string="Close"
+                                        class="btn btn-secondary"
+                                        special="cancel"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -127,37 +140,44 @@
         <field name="name">List of Contact</field>
         <field name="res_model">list.contact</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="view_list_contact_form"/>
+        <field name="view_id" ref="view_list_contact_form" />
         <field name="target">new</field>
     </record>
 
     <!-- Menu Items -->
-    <menuitem name="Maqsam API"
-              id="menu_root"
-              sequence="100"
-              web_icon="oe_maqsam_connector,static/description/icon_maqsam_imresizer.png">
-        
-        <menuitem name="User"
-                  id="menu_1"
-                  sequence="10"
-                  action="action_call_erp_odoo"/>
+    <menuitem
+        name="Maqsam API"
+        id="menu_root"
+        sequence="100"
+        web_icon="oe_maqsam_connector,static/description/icon_maqsam_imresizer.png"
+    >
 
-        <menuitem name="Call API"
-                  id="menu_2"
-                  sequence="20"
-                  action="action_list_of_contacts"/>
+        <menuitem name="User" id="menu_1" sequence="10" action="action_call_erp_odoo" />
 
-        <menuitem name="Auto Dial API"
-                  id="menu_3"
-                  sequence="30"
-                  action="action_dial_auto"/>
+        <menuitem
+            name="Call API"
+            id="menu_2"
+            sequence="20"
+            action="action_list_of_contacts"
+        />
 
-        <menuitem id="menu_maqsam_agent"
-                  name="Maqsam Agents API"
-                  action="action_maqsam_agent"/>
+        <menuitem
+            name="Auto Dial API"
+            id="menu_3"
+            sequence="30"
+            action="action_dial_auto"
+        />
 
-        <menuitem id="menu_maqsam_auto_login"
-                  name="Maqsam Auto Login"
-                  action="action_maqsam_auto_login"/>
+        <menuitem
+            id="menu_maqsam_agent"
+            name="Maqsam Agents API"
+            action="action_maqsam_agent"
+        />
+
+        <menuitem
+            id="menu_maqsam_auto_login"
+            name="Maqsam Auto Login"
+            action="action_maqsam_auto_login"
+        />
     </menuitem>
 </odoo>
