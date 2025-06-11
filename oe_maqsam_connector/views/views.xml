@@ -136,7 +136,7 @@
               id="menu_root"
               sequence="100"
               web_icon="oe_maqsam_connector,static/description/icon_maqsam_imresizer.png">
-        
+
         <menuitem name="User"
                   id="menu_1"
                   sequence="10"
