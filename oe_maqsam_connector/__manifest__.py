@@ -13,6 +13,8 @@
     "category": "Helpdesk",
     "version": "17.0.1.0.0",
     "depends": ["mail", "web"],
+    "price": "100.00",
+    "currency": "USD",
     "data": [
         "security/ir.model.access.csv",
         "views/res_config_settings.xml",
