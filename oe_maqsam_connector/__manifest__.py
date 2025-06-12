@@ -13,7 +13,7 @@
     "category": "Helpdesk",
     "version": "16.0.1.0.0",
     "depends": ["mail", "web"],
-    "price": "100.00",
+    "price": "101.0",
     "currency": "USD",
     "images": ["static/description/banner.gif"],
     "data": [
