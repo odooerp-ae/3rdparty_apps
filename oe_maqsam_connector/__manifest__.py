@@ -15,6 +15,7 @@
     "depends": ["mail", "web"],
     "price": "100.00",
     "currency": "USD",
+    "images": ["static/description/banner.gif"],
     "data": [
         "security/ir.model.access.csv",
         "views/res_config_settings.xml",
