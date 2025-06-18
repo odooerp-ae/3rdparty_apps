@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sf_contract,sf.contract,model_sf_contract,base.group_user,1,1,1,1
+access_salesforce_instance,access.salesforce.instance,model_salesforce_instance,base.group_user,1,1,1,1
+access_salesforce_instance_line,access.salesforce.instance.line,model_salesforce_instance_line,base.group_user,1,1,1,1
+access_salseforce_message_wizard,salseforce.message.wizard,model_salseforce_message_wizard,base.group_user,1,1,1,1

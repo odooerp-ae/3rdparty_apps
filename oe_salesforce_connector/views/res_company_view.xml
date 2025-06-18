@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="salesforce_view_company_form">
+        <field name="name">salesforce.view.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="SalesForce">
+                    <separator name="configuration" string="SalesForce Configuration"/>
+                    <div class="row">
+							<div class="col-md-4" align="center">
+								<button string='Authenticate' type="object" name="salesforce_login"
+									class="oe_highlight" icon="fa-plug" />
+							</div>
+
+							<div class="col-md-4" align="center">
+								<button string='Test Connection' type="object" name="salesforce_test"
+									class="oe_highlight" icon="fa-plug" />
+							</div>
+							
+							<div class="col-md-4" align="center">
+                                <button string='Refresh Token' type="object" name="refresh_salesforce_token_from_access_token"
+                                    class="oe_highlight" icon="fa-refresh" />
+                            </div>
+
+					</div>
+                    
+                    
+                    <group string="Credentials">
+	                    <field name="sf_client_id" />
+	                    <field name="sf_client_secret" />
+	                    <field name="sf_auth_base_url" />
+	                    <field name="sf_access_token_url" />
+	                    <field name="sf_request_token_url" />
+	                    <field name="sf_url"/>
+	                    <field name="sf_auth_code"/>
+	                    <field name="sf_access_token"/>
+                    </group>
+                    <separator name='sync' string='Initial Sync'/>
+						<group>
+						
+							<button string="1 Import Accounts" type="object" name="import_sf_accounts" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							<label for="account_lastmodifieddate"/>
+							<field name="account_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="2 Import Contacts" type="object" name="import_sf_contacts" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="contact_lastmodifieddate"/>
+							<field name="contact_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="3 Import Products" type="object" name="import_sf_products" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="product_lastmodifieddate"/>
+							<field name="product_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="4 Import Quotations" type="object" name="import_sf_quote" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="quote_lastmodifieddate"/>
+							<field name="quote_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="5 Import Sales Orders" type="object" name="import_sf_so" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="order_lastmodifieddate"/>
+							<field name="order_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="6 Import Leads" type="object" name="import_sf_lead" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="lead_lastmodifieddate"/>
+							<field name="lead_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="7 Import Opportunity" type="object" name="import_sf_opportunity" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="opportunity_lastmodifieddate"/>
+							<field name="opportunity_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="8 Import Contract" type="object" name="import_sf_contract" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="contract_lastmodifieddate"/>
+							<field name="contract_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="9 Import Events" type="object" name="import_sf_event" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="event_lastmodifieddate"/>
+							<field name="event_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+						<group>
+							<button string="10 Import Tasks" type="object" name="import_sf_activity" class="oe_highlight" icon="fa-arrow-circle-down"/>
+							<div>
+							 <label for="task_lastmodifieddate"/>
+							<field name="task_lastmodifieddate" required="1"/>
+							</div>
+						</group>
+						
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

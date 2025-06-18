@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_export_partner_to_salesforce" model="ir.actions.server">
+        <field name="name">Export to Salesforce</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            records.exportPartner_to_sf()
+        </field>
+    </record>
+
+    <record id="salesforce_view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='website']" position="after">
+                <field name="x_salesforce_id" readonly="1"/>
+                <field name="x_is_updated" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

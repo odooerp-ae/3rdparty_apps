@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- this is for salesforce instance form view -->
+    <record id="salesforce_instance_form_view" model="ir.ui.view">
+        <field name="name">salesforce.instance.form.view</field>
+        <field name="model">salesforce.instance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string='Authenticate' type="object" name="salesforce_login" class="oe_highlight"
+                            icon="fa-plug"/>
+                    <button string='Test Connection' type="object" name="salesforce_test" class="oe_highlight"
+                            icon="fa-plug"/>
+                    <button string='Refresh Token' type="object" name="refresh_salesforce_token_from_access_token"
+                            class="oe_highlight" icon="fa-refresh"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Instance Name"/>
+                        <h1>
+                            <div class="d-flex">
+                                <field class="text-break" name="name"/>
+                            </div>
+                        </h1>
+                    </div>
+
+                    <style>
+                        div[name="options"] .btn-primary {
+                        margin-left: 10px;
+                        margin-right: 50px;
+                        }
+                    </style>
+                    <div name="options">
+                        <span class="d-inline-block">
+                            <label for="company_id"/>
+                            <field name="company_id"/>
+                        </span>
+                    </div>
+                    <group>
+                        <group string="Import Settings" col="2">
+                            <field name="import_limit"/>
+                            <field name="is_default_instance"/>
+                        </group>
+                        <group string="Export Settings" col="2">
+                            <field name="export_limit"/>
+                        </group>
+                    </group>
+
+                    <separator/>
+
+                    <group string="Salesforce App Credentials">
+                        <field name="sf_client_id"/>
+                        <field name="sf_client_secret"/>
+
+                    </group>
+
+
+                    <separator/>
+
+                    <group string="API Configuration URLs">
+                        <field name="sf_auth_base_url"/>
+                        <field name="sf_access_token_url"/>
+                        <field name="sf_request_token_url"/>
+                        <field name="sf_url"/>
+                    </group>
+
+                    <separator/>
+
+                    <group string="Authentication Tokens">
+                        <field name="sf_auth_code"/>
+                        <field name="sf_access_token"/>
+                    </group>
+
+
+                    <separator/>
+
+                    <notebook>
+                        <page string="Accounts" name="salesforce_accounts_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Accounts" type="object" name="import_sf_accounts"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="account_lastmodifieddate"/>
+                                    <field name="account_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" mode="list"
+                                   domain="[('type', '=', 'account')]"><!-- context="{'default_type': 'account'}"-->
+                                <list editable="bottom">
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Contacts" name="salesforce_contacts_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Contacts" type="object"
+                                            name="import_sf_contacts" class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="contact_lastmodifieddate"/>
+                                    <field name="contact_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'contact')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Products" name="salesforce_products_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Products" type="object" name="import_sf_products"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="product_lastmodifieddate"/>
+                                    <field name="product_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'product')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Quotations" name="salesforce_quotations_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Quotations" type="object" name="import_sf_quote"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="quote_lastmodifieddate"/>
+                                    <field name="quote_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'sale_quotation')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Sales Orders" name="salesforce_sales_orders_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Sales Orders" type="object" name="import_sf_so"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="order_lastmodifieddate"/>
+                                    <field name="order_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'sale_order')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Leads" name="salesforce_leads_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Leads" type="object" name="import_sf_lead"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="lead_lastmodifieddate"/>
+                                    <field name="lead_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'lead')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Opportunity" name="salesforce_opportunity_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Opportunity" type="object" name="import_sf_opportunity"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="opportunity_lastmodifieddate"/>
+                                    <field name="opportunity_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'opportunity')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Contract" name="salesforce_contract_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="8 Import Contract" type="object" name="import_sf_contract"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="contract_lastmodifieddate"/>
+                                    <field name="contract_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'contract')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Events" name="salesforce_events_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Events" type="object" name="import_sf_event"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="event_lastmodifieddate"/>
+                                    <field name="event_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'event')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Tasks" name="salesforce_tasks_info">
+                            <div name="options">
+                                <span class="d-inline-block">
+                                    <button string="Import Tasks" type="object" name="import_sf_activity"
+                                            class="oe_highlight" icon="fa-arrow-circle-down"/>
+                                    <label for="task_lastmodifieddate"/>
+                                    <field name="task_lastmodifieddate" required="1"/>
+                                </span>
+                            </div>
+                            <br/>
+                            <field name="salesforce_instance_line_ids" domain="[('type', '=', 'task')]">
+                                <list>
+                                    <field name="type"/>
+                                    <field name="date_time"/>
+                                    <field name="state"/>
+                                    <field name="message"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- this is for salesforce instance tree view -->
+    <record id="salesforce_instance_tree_view" model="ir.ui.view">
+        <field name="name">salesforce.instance.tree.view</field>
+        <field name="model">salesforce.instance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="company_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- this is for salesforce instance action -->
+    <record id="action_salesforce_instance" model="ir.actions.act_window">
+        <field name="name">SalesForce Instance</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">salesforce.instance</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Salesforce Instance
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+            id="menu_salesforce"
+            name="Salesforce Connector"
+            web_icon="oe_salesforce_connector,static/icon2.png"
+    />
+
+    <menuitem
+            id="menu_salesforce_config"
+            name="SalesForce Instance"
+            parent="oe_salesforce_connector.menu_salesforce"
+            action="action_salesforce_instance"
+            groups="base.group_system"
+    />
+
+</odoo>
