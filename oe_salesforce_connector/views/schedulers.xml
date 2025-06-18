@@ -183,7 +183,7 @@
         <field name="active" eval="False"/>
     </record>
 
-    <record id="crom_export_leads" model="ir.cron">
+    <record id="crom_export_leads_opportunity" model="ir.cron">
         <field name="name">Salesforce -Export Opportunity to Salesforce</field>
         <field name="model_id" ref="model_crm_lead"/>
         <field name="interval_number">2</field>

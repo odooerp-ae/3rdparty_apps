@@ -18,15 +18,15 @@
 								<button string='Test Connection' type="object" name="salesforce_test"
 									class="oe_highlight" icon="fa-plug" />
 							</div>
-							
+
 							<div class="col-md-4" align="center">
                                 <button string='Refresh Token' type="object" name="refresh_salesforce_token_from_access_token"
                                     class="oe_highlight" icon="fa-refresh" />
                             </div>
 
 					</div>
-                    
-                    
+
+
                     <group string="Credentials">
 	                    <field name="sf_client_id" />
 	                    <field name="sf_client_secret" />
@@ -39,14 +39,14 @@
                     </group>
                     <separator name='sync' string='Initial Sync'/>
 						<group>
-						
+
 							<button string="1 Import Accounts" type="object" name="import_sf_accounts" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
 							<label for="account_lastmodifieddate"/>
 							<field name="account_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="2 Import Contacts" type="object" name="import_sf_contacts" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -54,7 +54,7 @@
 							<field name="contact_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="3 Import Products" type="object" name="import_sf_products" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -62,7 +62,7 @@
 							<field name="product_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="4 Import Quotations" type="object" name="import_sf_quote" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -70,7 +70,7 @@
 							<field name="quote_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="5 Import Sales Orders" type="object" name="import_sf_so" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -78,7 +78,7 @@
 							<field name="order_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="6 Import Leads" type="object" name="import_sf_lead" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -86,7 +86,7 @@
 							<field name="lead_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="7 Import Opportunity" type="object" name="import_sf_opportunity" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -94,7 +94,7 @@
 							<field name="opportunity_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="8 Import Contract" type="object" name="import_sf_contract" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -102,7 +102,7 @@
 							<field name="contract_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="9 Import Events" type="object" name="import_sf_event" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -110,7 +110,7 @@
 							<field name="event_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
 						<group>
 							<button string="10 Import Tasks" type="object" name="import_sf_activity" class="oe_highlight" icon="fa-arrow-circle-down"/>
 							<div>
@@ -118,7 +118,7 @@
 							<field name="task_lastmodifieddate" required="1"/>
 							</div>
 						</group>
-						
+
                 </page>
             </xpath>
         </field>

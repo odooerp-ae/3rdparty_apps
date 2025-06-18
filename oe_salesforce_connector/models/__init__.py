@@ -11,5 +11,3 @@ from . import event
 from . import mail_activity
 from . import quote
 from . import ir_attachment
-
-
