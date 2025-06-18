@@ -21,7 +21,7 @@ crm app
         "data/product_data.xml",
         "security/ir.model.access.csv",
         "wizards/message_view.xml",
-        "views/res_company_view.xml",
+        # "views/res_company_view.xml",
         "views/res_partner_view.xml",
         "views/product_templ.xml",
         "views/crm_lead_view.xml",
