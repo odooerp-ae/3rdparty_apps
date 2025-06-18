@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Salesforce Odoo Connector | Odoo Apps </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body style="font-family: system-ui, sans-serif;
+margin: 0; padding: 0; background-color: #eee;">
+
+
+<div class="px-md-5 py-md-4 p-2 mb-4 bg-white shadow" style="border-radius:20px; font-family:'system-ui', sans-serif">
+    <!--    &lt;!&ndash; Logo Container &ndash;&gt;-->
+    <!--    <div class="oe_container" style="margin-left:calc(-42vw + 50%); width:84vw">-->
+    <!--        <div class="row o_equal_col_sm" style="max-width:1540px">-->
+    <!--            <div style="display:block; margin:0 auto; max-width:330px; width:80%">-->
+    <!--                <span style="width:100%; display:inline-block">-->
+    <!--                    <img class="img img-responsive mt24 mb8"-->
+    <!--                         src="//apps.odoocdn.com/apps/assets/18.0/taxjar_integration_ts/img/teqstars_odoo.svg?82f5b11"-->
+    <!--                         style="display:block; margin:0 auto">-->
+    <!--                </span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <!-- Certified Image Section -->
+    <div class="position-relative" style="border-radius:10px">
+        <div class="p-lg-5 p-3 position-relative">
+            <div class="row py-4 py-lg-0">
+                <img class="img img-responsive mt24 mb8"
+                     src="assets/screenshots/salesforcexodoo.png"
+                     style="display:block; margin:0 auto; max-width:-webkit-fill-available">
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Banner + Content -->
+    <div class="position-relative mb-4" style="border-radius:10px">
+        <img alt="" class="w-100 h-100 position-absolute img-fluid left_0" loading="lazy"
+             src="description/main_image.png"
+             style="border-radius:25px;">
+
+        <div class="p-lg-5 p-3 position-relative">
+            <div class="row py-4 py-lg-0">
+                <!-- Title -->
+                <div class="col-md-12">
+                    <h1 style="font-family:'system-ui'; font-style:normal; font-weight:bold; font-size:calc(2.06rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                        <span style="color:#333333;">Odoo TaxJar Integration</span>
+                    </h1>
+                </div>
+
+                <!-- Description -->
+                <div class="col-md-12 py-2">
+                    <p style="font-family:system-ui; font-weight:500; font-size:18px; line-height:150% !important; text-align:center; letter-spacing:-0.02em; color:#4F4F4F">
+                        Connect your Odoo account to TaxJar and start filing your sales tax returns in minutes instead
+                        of hours. Compute sales tax automatically using TaxJar based on customer and inventory
+                        addresses. Also allow to upload transaction from Odoo to TaxJar.
+                    </p>
+                </div>
+
+                <!-- Sub-heading -->
+                <div class="col-md-12 py-2">
+                    <h4 style="color:#10488A; font-family:'system-ui'; font-weight:600; text-align:center; margin:15px 0 16px">
+                        GET PERSONALIZED DEMO
+                    </h4>
+                </div>
+
+                <!-- Contact Buttons -->
+                <div class="col-md-12 py-2 text-center">
+                    <a href="mailto:sales@teqstars.com?subject=Odoo%20TaxJar%20Integration%20-%2018" target="_blank"
+                       style="background-color:#091E42; border-radius:12px; display:inline-block; padding:7px 33px; border:1px solid #091E42"
+                       class="mx-1 mb-2 deep-1 deep_hover">
+                        <img src="assets/misc/mail.png" alt="Email" style="width: 35px; height: 35px;">
+                        <span class="pl-2" style="color:#fff; font-size:16px; vertical-align:middle">Email Us</span>
+                    </a>
+                    <a href="skype:live:.cid.3745956e2833ccec?chat" target="_blank"
+                       style="background-color:#091E42; border-radius:12px; display:inline-block; padding:7px 33px; border:1px solid #091E42"
+                       class="mx-1 mb-2 deep-1 deep_hover">
+                        <img src="assets/misc/skype.png" alt="Skype" style="width: 35px; height: 35px;">
+                        <span class="pl-2" style="color:#fff; font-size:16px; vertical-align:middle">Skype Us</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Tabs -->
+<div style="display: flex; justify-content:
+center; border-bottom: 1px solid #ccc;
+ padding: 5px 0; margin-top: 0; background-color: #f9f9f9;">
+
+    <!-- Tab: Features -->
+    <div id="tab-features" onclick="showTab('features')"
+         style="padding: 10px 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; color: #003366; font-weight: 600; border: 1px solid #ccc; border-bottom: none; border-radius: 10px 10px 0 0; background-color: white;">
+        <img src="https://cdn-icons-png.flaticon.com/512/5610/5610944.png" alt="features-icon" style="width: 18px;">
+        <span>FEATURES</span>
+    </div>
+
+    <div id="tab-screenshots" onclick="showTab('screenshots')"
+         style="padding: 10px 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; color: #003366; font-weight: 600; border: 1px solid transparent; border-radius: 10px 10px 0 0; background-color: transparent;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" alt="image-icon" style="width: 18px;">
+        <span>SCREENSHOTS</span>
+    </div>
+
+
+    <!-- Tab: User Guide -->
+    <div id="tab-userguide" onclick="showTab('userguide')"
+         style="padding: 10px 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; color: #003366; font-weight: 600; border: 1px solid transparent; border-radius: 10px 10px 0 0; background-color: transparent;">
+        <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="userguide-icon" style="width: 18px;">
+        <span>USER GUIDE</span>
+    </div>
+
+    <!-- Tab: FAQs -->
+    <div id="tab-faqs" onclick="showTab('faqs')"
+         style="padding: 10px 20px; display: flex; align-items: center; gap: 8px; cursor: pointer; color: #003366; font-weight: 600; border: 1px solid transparent; border-radius: 10px 10px 0 0; background-color: transparent;">
+        <img src="https://cdn-icons-png.flaticon.com/512/545/545705.png" alt="faq-icon" style="width: 18px;">
+        <span>FAQ'S</span>
+    </div>
+
+
+</div>
+
+<!-- Tab Content -->
+<div id="content-features" style="background-color: white; padding: 30px;">
+    <!-- START: Import Operations -->
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 30px;">
+        <span style="color: #7d00b5; font-size: 14px; font-weight: 500;">Salesforce To Odoo</span>
+        <h3 style="margin-top: 5px;">Import Operations</h3>
+        <ul style="margin-top: 15px;">
+            <li>Import <strong>Accounts</strong> from Salesforce.</li>
+            <li>Import <strong>Contacts</strong> from Salesforce.</li>
+            <li>Import <strong>Products</strong> from Salesforce.</li>
+            <li>Import <strong>Quotations</strong> from Salesforce.</li>
+            <li>Import <strong>Sales Orders</strong> from Salesforce.</li>
+            <li>Import <strong>Leads</strong> from Salesforce.</li>
+            <li>Import <strong>Opportunities</strong> from Salesforce.</li>
+            <li>Import <strong>Contracts</strong> from Salesforce.</li>
+            <li>Import <strong>Events</strong> from Salesforce.</li>
+            <li>Import <strong>Tasks</strong> from Salesforce.</li>
+        </ul>
+    </div>
+
+    <!-- START: Export Operations -->
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px;">
+        <span style="color: #7d00b5; font-size: 14px; font-weight: 500;">Odoo To Salesforce</span>
+        <h3 style="margin-top: 5px;">Export Operations</h3>
+        <ul style="margin-top: 15px;">
+            <li>Export <strong>Accounts</strong> from Salesforce.</li>
+            <li>Export <strong>Contacts</strong> from Salesforce.</li>
+            <li>Export <strong>Products</strong> from Salesforce.</li>
+            <li>Export <strong>Quotations</strong> from Salesforce.</li>
+            <li>Export <strong>Sales Orders</strong> from Salesforce.</li>
+            <li>Export <strong>Leads</strong> from Salesforce.</li>
+            <li>Export <strong>Opportunities</strong> from Salesforce.</li>
+            <li>Export <strong>Contracts</strong> from Salesforce.</li>
+            <li>Export <strong>Events</strong> from Salesforce.</li>
+            <li>Export <strong>Tasks</strong> from Salesforce.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="content-screenshots" style="display: none; background-color: white; padding: 30px;">
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 5px; text-align: center;">Salesforce Login</h3>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/login_salesforce1.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 5px; text-align: center;">Salesforce Settings</h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>Click on the <strong>Settings</strong> icon on the top right.</li>
+                <li>Select <strong>Setup</strong> from the dropdown menu.</li>
+                <li>On the left sidebar, click <strong>Apps</strong> &rarr; <strong>App Manager</strong>.</li>
+            </ol>
+        </div>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/setup_appmanager2.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Connect Salesforce App</h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>Click on <strong>New Connected App</strong> in the top right corner.</li>
+                <li>Fill in the details to create a connected app.</li>
+                <li>Click on <strong>Continue</strong> to proceed.</li>
+            </ol>
+        </div>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/new_connect_create_connect3.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Fill these details & Save</h3>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/fill_info4.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/uncheck5.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/save6.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Consumer Credentials</h3>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/consumer.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Odoo Salesforce connector</h3>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/odoo_credentials.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Authentication</h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>Press the <strong>Authenticate</strong> button at the top.</li>
+                <li>The <strong>Auth Code</strong> and <strong>Access Token</strong> will be generated automatically
+                </li>
+                <li>your Salesforce–Odoo connection is ready</li>
+            </ol>
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/odoo_credentials.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Import Accounts from Salesforce to Odoo</h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open your <strong>Salesforce</strong> account.</li>
+                <li>Click on your profile icon in the top right corner.</li>
+                <li>Select the <strong>Compact</strong> view from the “Comfy” or “Compact” options.</li>
+            </ol>
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/saleforce_profile.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>On the top-left corner, click the <strong>3×3 grid (App Launcher)</strong> button.</li>
+                <li>Then click <strong>View All</strong>.</li>
+                <li>After that, click on <strong>Sales</strong>.</li>
+                <li>At the top, you’ll see options like <strong>Home</strong>, <strong>Opportunities</strong>, <strong>Leads</strong>,
+                    <strong>Tasks</strong>, etc.
+                </li>
+                <li>Click on <strong>Accounts</strong>.</li>
+            </ol>
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/view_all.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>Provide the necessary information.</li>
+                <li>Click on <strong>Save</strong>.</li>
+            </ol>
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/create_account.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>Now, open your <strong>Odoo</strong> instance.</li>
+                <li>Navigate to the <strong>Salesforce Connector</strong> menu.</li>
+                <li>Click the <strong>Import Accounts</strong> button.</li>
+                <li>You will see a confirmation message with <strong>Accounts</strong>, <strong>Time</strong>, and
+                    <strong>Success</strong> status as <em>“Imported Successfully”</em>.
+                </li>
+            </ol>
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/import_account.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>Once imported successfully, go to the <strong>Contacts</strong> menu in Odoo.</li>
+                <li>Search for the account you created in Salesforce — it should now be visible in Odoo.</li>
+            </ol>
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/import_contact_successfully.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+    </div>
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Export Contacts/Accounts from Odoo to Salesforce</h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open your <strong>Odoo</strong> Contacts.</li>
+                <li>Click on a contact record to open the form view.</li>
+                <li>At the top of the form, click on the gear icon labeled <strong>Action</strong>.</li>
+                <li>From the dropdown, select the option <strong>Export to Salesforce</strong>.</li>
+            </ol>
+
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/export_contact.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/Contact_exported.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Import Products from Salesforce to Odoo </h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open <strong>Salesforce</strong> and go to the <strong>Products</strong> section.</li>
+                <li>Click on <strong>All Product Lists</strong>.</li>
+                <li>Create a new product and click <strong>Save</strong>.</li>
+                <li>Now, open <strong>Odoo</strong> and go to the <strong>Salesforce</strong> menu.</li>
+                <li>Under the <strong>Products</strong> tab, click on <strong>Import</strong>.</li>
+                <li>Once the import is complete, a message will appear showing <strong>Imported Successfully</strong>.
+                </li>
+            </ol>
+        </div>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/product_import.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/product_import_successfully.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Export Products from Odoo to Salesforce </h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open your <strong>Odoo</strong> Products.</li>
+                <li>Click on a Product record to open the form view.</li>
+                <li>At the top of the form, click on the gear icon labeled <strong>Action</strong>.</li>
+                <li>From the dropdown, select the option <strong>Export to Salesforce</strong>.</li>
+            </ol>
+
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/product_export.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/exported_product.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Import Opportunities from Salesforce to Odoo </h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open <strong>Salesforce</strong> and go to the <strong>Opportunities</strong> section.</li>
+                <li>Create a new opportunity, fill in the necessary fields, and save the record.</li>
+                <li>Then, open <strong>Odoo</strong>, go to the <strong>Salesforce</strong> menu, and click on the
+                    <strong>Opportunities</strong> tab.
+                </li>
+                <li>Click on the <strong>Import</strong> button.</li>
+                <li>Once the import is complete, a message will appear showing <strong>Imported Successfully</strong>.
+                </li>
+            </ol>
+        </div>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/create_oppurtunity.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/imported_oppurtunity.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Export Opportunities from Odoo to Salesforce </h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open your <strong>Odoo</strong> CRM module.</li>
+                <li>Click on the <strong>Opportunities</strong> menu and open an opportunity record.</li>
+                <li>At the top of the form view, click on the gear icon labeled <strong>Action</strong>.</li>
+                <li>From the dropdown, select the option <strong>Export to Salesforce</strong>.</li>
+            </ol>
+
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/oppurtunity_export.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/exported_successfully.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Import Sale Quotations from Salesforce to Odoo </h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>Open <strong>Salesforce</strong> and navigate to the <strong>Quotes</strong> section.</li>
+                <li>Create a new quote, fill in the required details, and save the record.</li>
+                <li>Add products to the quote, enter the quantities for each product, and save it again. You can also
+                    upload any necessary attachments. Then, click the <strong>Mark Status as Complete</strong> button.
+                </li>
+                <li>Next, go to <strong>Odoo</strong>, open the <strong>Salesforce</strong> menu, and select the
+                    <strong>Quotations</strong> tab.
+                </li>
+                <li>Click the <strong>Import</strong> button.</li>
+                <li>After the import is complete, a confirmation message saying <strong>Imported Successfully</strong>
+                    will appear.
+                </li>
+            </ol>
+
+        </div>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/new_quote_salesforce.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/quote_add_products.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+         <img src="assets/screenshots/imported_quote.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Import Events from Salesforce to Odoo </h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open <strong>Salesforce</strong> and go to the <strong>Events</strong> section.</li>
+                <li>Create a new Event, fill in the necessary fields, and save the record.</li>
+                <li>Then, open <strong>Odoo</strong>, go to the <strong>Salesforce</strong> menu, and click on the
+                    <strong>Events</strong> tab.
+                </li>
+                <li>Click on the <strong>Import</strong> button.</li>
+                <li>Once the import is complete, a message will appear showing <strong>Imported Successfully</strong>.
+                </li>
+            </ol>
+        </div>
+
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/new_event.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/event_imported.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+
+    <div style="background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05); border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; position: relative;">
+        <h3 style="margin-top: 30px;">Export Events from Odoo to Salesforce </h3>
+        <div style="display: flex; justify-content: center;">
+            <ol style="list-style-position: inside; text-align: left; font-size: 16px;">
+                <li>First, open your <strong>Odoo</strong> Calendar module.</li>
+                <li>Click on the <strong>New</strong> menu and open a record.</li>
+                <li>At the top of the form view, click on the gear icon labeled <strong>Action</strong>.</li>
+                <li>From the dropdown, select the option <strong>Export to Salesforce</strong>.</li>
+            </ol>
+
+        </div>
+        <!-- New screen shot image replacing the list -->
+        <img src="assets/screenshots/event_export.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+        <img src="assets/screenshots/event_export_done.png" alt="Image"
+             style="max-width: 90%; max-height: 90%; object-fit: contain; margin-top: 15px;">
+
+    </div>
+
+</div>
+
+
+<div id="content-userguide"
+     style="flex: 1 1 45%; background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05)border-radius: 10px; padding: 20px; text-align: center;">
+
+    <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 30px;">
+
+        <!-- Column 1: Read User Guide -->
+        <div id="read-user-guide" style="flex: 1 1 45%; background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        border-radius: 10px; padding: 20px; text-align: center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="book-icon"
+                 style="width: 40px; margin-bottom: 15px;">
+            <p style="font-weight: bold; font-size: 16px; margin-bottom: 10px;">Read User Guide</p>
+            <a href="https://your-user-guide-link.com" target="_blank"
+               style="display: inline-block; padding: 10px 20px; background-color: #7d00b5;
+              color: white; border-radius: 5px; text-decoration: none;">
+                Open Guide
+            </a>
+        </div>
+
+        <!-- Column 2: See How It Works -->
+        <div id="see-how-it-works" style="flex: 1 1 45%; background-color: #fff7f8; box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        border-radius: 10px; padding: 20px; text-align: center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="youtube-icon"
+                 style="width: 40px; margin-bottom: 15px;">
+            <p style="font-weight: bold; font-size: 16px; margin-bottom: 10px;">See How It Works</p>
+            <a href="https://your-tutorial-link.com" target="_blank"
+               style="display: inline-block; padding: 10px 20px; background-color: #7d00b5;
+              color: white; border-radius: 5px; text-decoration: none;">
+                Click to Watch Tutorial
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="content-faqs" style="display: none; background-color: white; padding: 30px;">
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Does this application work with both Odoo Enterprise and Community editions?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, the application is fully compatible with Odoo Enterprise (On-premise and Odoo.SH) as well as
+                    Community.
+                    Please note that Odoo Online (Cloud) does not support installation of third-party apps.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Will I receive complimentary support and upgrades upon buying the application?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    We offer free support for 60 days after purchase. Starting from version 13, each app version is sold
+                    separately.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mb-3">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    How do I request an additional feature for this app?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                 data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    You can request additional features by contacting us via
+                    <a href="mailto:info@teqstars.com">email</a> or
+                    <a href="skype:live:.cid.3745956e2833ccec?chat">Skype</a>.
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- Bootstrap 5 CSS & JS (needed for accordion) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</div>
+<div class="container mt-5">
+    <div class="col-lg-12 d-flex flex-column justify-content-center align-items-center mt-5">
+        <h1 style="color: #333; margin: 0 0 15px 0; font-size: 50px;font-weight:500;">Suggested Apps</h1>
+    </div>
+</div>
+<div id="myCarousel" class="carousel slide py-3" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="row p-4">
+                <div class="col">
+                    <div class="p-3">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/manufacturing_reports/"
+                           style="color: #000; text-decoration: none;">
+                            <div style="border:1px solid #CBCBCB !important;border-radius: 4px;">
+                                <div style="width: 300px; ">
+                                    <img src="assets/modules/1.png"
+                                         alt="" width="100%"
+                                         height="auto">
+
+                                </div>
+                                <p class="text-center pt-2 text-black font-weight-bold">
+                                    Manufacturing Reports</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/mrp_work_order_print/"
+                           style="color: #000; text-decoration: none;">
+                            <div style="border:1px solid #CBCBCB !important;border-radius: 4px;">
+                                <div style="width: 300px; ">
+                                    <img src="assets/modules/2.png"
+                                         alt="" width="100%"
+                                         height="auto">
+
+                                </div>
+                                <p class="text-center pt-2 text-black font-weight-bold">
+                                    Print Work Order Details</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/bom_total_cost/"
+                           style="color: #000; text-decoration: none;">
+                            <div style="border:1px solid #CBCBCB !important;border-radius: 4px;">
+                                <div style="width: 300px; ">
+                                    <img src="assets/modules/3.png"
+                                         alt="" width="100%"
+                                         height="auto">
+
+                                </div>
+                                <p class="text-center pt-2 text-black font-weight-bold">
+                                    Show Total Cost On BOM</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="row p-4">
+                <div class="col">
+                    <div class="p-3">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/simple_mrp_order/"
+                           style="color: #000; text-decoration: none;">
+                            <div style="border:1px solid #CBCBCB !important;border-radius: 4px;">
+                                <div style="width: 300px; ">
+                                    <img src="assets/modules/4.png"
+                                         alt="" width="100%"
+                                         height="auto">
+
+                                </div>
+                                <p class="text-center pt-2 text-black font-weight-bold">
+                                    Simple Manufacturing Orders</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/bom_multiple_product/"
+                           style="color: #000; text-decoration: none;">
+                            <div style="border:1px solid #CBCBCB !important;border-radius: 4px;">
+                                <div style="width: 300px;">
+                                    <img src="assets/modules/5.png"
+                                         alt="" width="100%"
+                                         height="auto">
+
+                                </div>
+                                <p class="text-center pt-2 text-black font-weight-bold">
+                                    BOM Multiple Product Selection</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-3">
+                        <a href="https://apps.odoo.com/apps/modules/16.0/cw_mrp/"
+                           style="color: #000; text-decoration: none;">
+                            <div style="border:1px solid #CBCBCB !important;border-radius: 4px;">
+                                <div style="width: 300px;">
+                                    <img src="assets/modules/6.png"
+                                         alt="" width="100%"
+                                         height="auto">
+                                </div>
+                                <p class="text-center pt-2 text-black font-weight-bold">
+                                    Catch Weight Management:
+                                    Manufacturing</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#myCarousel"
+       data-slide="prev" style="width: 35px; color: #000;">
+                    <span class="carousel-control-prev-icon">
+                        <i class="fa fa-chevron-left"
+                           style="font-size: 24px;"></i>
+                    </span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel"
+       data-slide="next" style="width: 35px; color: #000;">
+                    <span class="carousel-control-next-icon">
+                        <i class="fa fa-chevron-right"
+                           style="font-size: 24px;"></i>
+                    </span>
+    </a>
+</div>
+
+<!-- JavaScript -->
+<script>
+    function showTab(tabName) {
+      const tabs = ['features', 'screenshots', 'userguide', 'faqs'];
+
+      tabs.forEach(function(tab) {
+        const tabButton = document.getElementById('tab-' + tab);
+        const content = document.getElementById('content-' + tab);
+
+        if (tab === tabName) {
+          tabButton.style.backgroundColor = 'white';
+          tabButton.style.border = '1px solid #ccc';
+          tabButton.style.borderBottom = 'none';
+
+          content.style.display = 'block';
+        } else {
+          tabButton.style.backgroundColor = 'transparent';
+          tabButton.style.border = '1px solid transparent';
+
+          content.style.display = 'none';
+        }
+      });
+    }
+</script>
+
+</body>
+</html>
