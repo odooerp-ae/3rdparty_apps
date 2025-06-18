@@ -38,7 +38,7 @@ crm app
     "live_test_url": "",
     "currency": "USD",
     "license": "AGPL-3",
-    "price": 450.00,
+    "price": 350.00,
     "installable": True,
     "application": True,
     "auto_install": False,
