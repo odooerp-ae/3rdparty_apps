@@ -273,6 +273,169 @@ class SaleOrderCust(models.Model):
                 else:
                     return False
 
+    def _export_attachments_to_sf(
+        self, sf_config, sf_record_id, api_version="v52.0", timeout=180
+    ):
+        """
+        Exports attachments linked to the current Odoo record to Salesforce
+        and links them to the specified Salesforce record ID.
+        :param sf_config: Salesforce instance configuration record.
+        :param sf_record_id: The Salesforce ID of the record (e.g., Quote ID) to link attachments to.
+        :param api_version: Salesforce API version to use.
+        :param timeout: Timeout for API requests in seconds.
+        """
+        if not sf_record_id:
+            _logger.warning(
+                f"Salesforce record ID is missing for Sale Order {self.name}. Cannot export attachments."
+            )
+            return False
+
+        if not sf_config.sf_access_token:
+            _logger.warning(
+                "No Salesforce access token available for attachment export."
+            )
+            return False
+
+        headers = sf_config.get_sf_headers(type=True)
+
+        attachments = self.env["ir.attachment"].search(
+            [("res_model", "=", "sale.order"), ("res_id", "=", self.id)]
+        )
+
+        if not attachments:
+            _logger.info(
+                f"No attachments found for Sale Order {self.name} (ID: {self.id}). Skipping attachment export."
+            )
+            return True
+
+        _logger.info(
+            f"Exporting {len(attachments)} attachments for Sale Order {self.name} to Salesforce record {sf_record_id}."
+        )
+
+        for attachment in attachments:
+            try:
+                # 1. Upload ContentVersion (the file itself)
+                cv_endpoint = f"/services/data/{api_version}/sobjects/ContentVersion"
+
+                # Salesforce requires Base64 encoded file data without the 'b' prefix and newlines
+                # Odoo's ir.attachment stores 'datas' as base64 encoded bytes
+                version_data = (
+                    attachment.datas.decode("utf-8") if attachment.datas else ""
+                )
+
+                cv_payload = {
+                    "Title": attachment.name,
+                    "PathOnClient": attachment.name,
+                    "VersionData": version_data,
+                    "Origin": "H",  # 'H' for Salesforce Files, 'C' for Content
+                    "ContentLocation": "S",  # 'S' for Salesforce, 'E' for External
+                }
+
+                _logger.info(
+                    f"Attempting to upload attachment {attachment.name} (ID: {attachment.id}) to ContentVersion."
+                )
+                cv_res = requests.request(
+                    "POST",
+                    sf_config.sf_url + cv_endpoint,
+                    headers=headers,
+                    json=cv_payload,
+                    timeout=timeout,
+                )
+                cv_res.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+
+                # --- NEW LOGGING ADDED HERE ---
+                _logger.info(
+                    f"ContentVersion upload response status: {cv_res.status_code}"
+                )
+                cv_response_data = cv_res.json()
+                _logger.info(f"ContentVersion upload response data: {cv_response_data}")
+                # --- END NEW LOGGING ---
+
+                content_version_id = cv_response_data.get("id")
+                if not content_version_id:
+                    _logger.error(
+                        f"Failed to get ContentVersionId after uploading ContentVersion for {attachment.name}. "
+                        f"ContentVersion API Response: {cv_response_data}"
+                    )
+                    continue
+
+                # Step: Query to get ContentDocumentId
+                query = f"SELECT ContentDocumentId FROM ContentVersion WHERE Id = '{content_version_id}'"
+                query_endpoint = f"/services/data/{api_version}/query/?q={query}"
+
+                try:
+                    _logger.info(
+                        f"Querying ContentDocumentId for ContentVersionId: {content_version_id}"
+                    )
+                    query_res = requests.get(
+                        sf_config.sf_url + query_endpoint,
+                        headers=headers,
+                        timeout=timeout,
+                    )
+                    query_res.raise_for_status()
+                    query_data = query_res.json()
+
+                    content_document_id = query_data["records"][0]["ContentDocumentId"]
+                except Exception as e:
+                    _logger.error(
+                        f"Failed to retrieve ContentDocumentId for ContentVersionId {content_version_id}: {e}"
+                    )
+                    continue
+
+                _logger.info(
+                    f"Successfully uploaded ContentVersion for {attachment.name}. ContentDocumentId: {content_document_id}"
+                )
+
+                # 2. Link ContentDocument to the Salesforce record (e.g., Quote)
+                cdl_endpoint = (
+                    f"/services/data/{api_version}/sobjects/ContentDocumentLink"
+                )
+                cdl_payload = {
+                    "ContentDocumentId": content_document_id,
+                    "LinkedEntityId": sf_record_id,  # The Salesforce Quote ID (self.x_salesforce_id)
+                    "ShareType": "I",  # 'V' for Viewer, 'C' for Collaborator, 'I' for Inferred (default)
+                    "Visibility": "AllUsers",  # 'AllUsers', 'InternalUsers'
+                }
+
+                _logger.info(
+                    f"Attempting to link ContentDocument {content_document_id} to Salesforce record {sf_record_id}."
+                )
+                cdl_res = requests.request(
+                    "POST",
+                    sf_config.sf_url + cdl_endpoint,
+                    headers=headers,
+                    json=cdl_payload,
+                    timeout=timeout,
+                )
+                cdl_res.raise_for_status()
+
+                _logger.info(
+                    f"Successfully linked attachment {attachment.name} to Salesforce record {sf_record_id}."
+                )
+
+            except requests.exceptions.Timeout:
+                _logger.error(
+                    f"Timeout occurred while exporting attachment {attachment.name} (ID: {attachment.id}) to Salesforce."
+                )
+            except requests.exceptions.RequestException as e:
+                error_response_text = "No response body received."
+                if e.response is not None:
+                    try:
+                        error_response_text = e.response.json()
+                    except json.JSONDecodeError:
+                        error_response_text = e.response.text
+
+                _logger.error(
+                    f"Error exporting attachment {attachment.name} (ID: {attachment.id}) to Salesforce: {e}. "
+                    f"Salesforce Response: {error_response_text}"
+                )
+            except Exception as e:
+                _logger.error(
+                    f"An unexpected error occurred during attachment export for {attachment.name}: {e}"
+                )
+
+        return True
+
     def exportQuotations_to_sf(self, is_from_cron=False):
         if len(self) > 1 and not is_from_cron:
             raise UserError(_("Please Select 1 record to Export"))
@@ -323,9 +486,12 @@ class SaleOrderCust(models.Model):
             quote_dict["Tax"] = self.amount_tax
         if self.validity_date:
             quote_dict["ExpirationDate"] = str(self.validity_date)
+
+        sf_access_token = None
         if sf_config.sf_access_token:
             sf_access_token = sf_config.sf_access_token
 
+        headers = None
         if sf_access_token:
             headers = sf_config.get_sf_headers(type=True)
 
@@ -343,9 +509,17 @@ class SaleOrderCust(models.Model):
 
         result = self.sendQuoteDataToSf(quote_dict, is_cron=is_from_cron)
         line_sf_id = ""
-        if result:
+
+        if result and self.x_salesforce_id:
+            # --- ATTACHMENT EXPORT CALL ---
+            self._export_attachments_to_sf(sf_config, self.x_salesforce_id, timeout=180)
+            # --- END ATTACHMENT EXPORT ---
+
             if self.order_line:
                 for line in self.order_line:
+                    if not headers:
+                        headers = sf_config.get_sf_headers(type=True)
+
                     if line.x_salesforce_id and line.quotation_order_line_updated:
                         delete_quotation_line = (
                             self.delete_quotation_line_to_salesforce(
@@ -374,27 +548,22 @@ class SaleOrderCust(models.Model):
                                     "QuoteId": self.x_salesforce_id,
                                 }
                             line_id = line.id
-                            # Create a entry in pricebook in salesforce
-                            if sf_config.sf_access_token:
-                                sf_access_token = sf_config.sf_access_token
 
-                            if sf_access_token:
-                                headers = sf_config.get_sf_headers(type=True)
-
-                            salesforce_pbe = ""
-                            pricebook_id = ""
-                            quote_data = requests.request(
+                            quote_data_res = requests.request(
                                 "GET",
                                 sf_config.sf_url
                                 + f"/services/data/v40.0/query/?q=select Pricebook2Id from Quote where Id = '{self.x_salesforce_id}'",
                                 headers=headers,
                                 timeout=180,
                             )
-                            if quote_data.text:
-                                quote_data = json.loads(str(quote_data.text))
-                                pricebook_id = quote_data.get("records")[0].get(
-                                    "Pricebook2Id"
-                                )
+                            pricebook_id = ""
+                            if quote_data_res.text:
+                                quote_data = json.loads(str(quote_data_res.text))
+                                if quote_data.get("records"):
+                                    pricebook_id = quote_data.get("records")[0].get(
+                                        "Pricebook2Id"
+                                    )
+
                             PricebookEntryData = requests.request(
                                 "GET",
                                 sf_config.sf_url
@@ -408,7 +577,7 @@ class SaleOrderCust(models.Model):
                                 pricebookentry_data = json.loads(
                                     str(PricebookEntryData.text)
                                 )
-                                for pricebook in pricebookentry_data.get("records"):
+                                for pricebook in pricebookentry_data.get("records", []):
                                     line.product_id.x_salesforce_pbe = pricebook.get(
                                         "Id"
                                     )
@@ -445,31 +614,25 @@ class SaleOrderCust(models.Model):
                                 "QuoteId": self.x_salesforce_id,
                             }
                         line_id = line.id
-                        # Create a entry in price-book in salesforce
-                        if sf_config.sf_access_token:
-                            sf_access_token = sf_config.sf_access_token
 
-                        if sf_access_token:
-                            headers = sf_config.get_sf_headers(type=True)
-
-                        salesforce_pbe = ""
-                        pricebook_id = ""
-                        quote_data = requests.request(
+                        quote_data_res = requests.request(
                             "GET",
                             sf_config.sf_url
                             + f"/services/data/v40.0/query/?q=select Pricebook2Id from Quote where Id = '{self.x_salesforce_id}'",
                             headers=headers,
                             timeout=180,
                         )
-                        if quote_data.text:
-                            quote_data = json.loads(str(quote_data.text))
-                            pricebook_id = quote_data.get("records")[0].get(
-                                "Pricebook2Id"
-                            )
+                        pricebook_id = ""
+                        if quote_data_res.text:
+                            quote_data = json.loads(str(quote_data_res.text))
+                            if quote_data.get("records"):
+                                pricebook_id = quote_data.get("records")[0].get(
+                                    "Pricebook2Id"
+                                )
                         PricebookEntryData = requests.request(
                             "GET",
                             sf_config.sf_url
-                            + "/services/data/v40.0/query/?q=select Id,UnitPrice from PricebookEntry where  Product2Id='{}'".format(
+                            + "/services/data/v40.0/query/?q=select Id,UnitPrice from PricebookEntry where Product2Id='{}'".format(
                                 quote_line_dict["Product2Id"]
                             ),
                             headers=headers,
@@ -479,7 +642,7 @@ class SaleOrderCust(models.Model):
                             pricebookentry_data = json.loads(
                                 str(PricebookEntryData.text)
                             )
-                            for pricebook in pricebookentry_data.get("records"):
+                            for pricebook in pricebookentry_data.get("records", []):
                                 line.product_id.x_salesforce_pbe = pricebook.get("Id")
                             quote_line_dict["PricebookEntryId"] = (
                                 line.product_id.x_salesforce_pbe
