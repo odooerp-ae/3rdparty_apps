@@ -468,6 +468,28 @@ class SaleOrderCust(models.Model):
                             )
                     self.x_salesforce_exported = True
 
+                    # Export attachments to Salesforce (after exporting sale order and lines)
+                    if self.sale_order_salesforce_id:
+                        try:
+                            export_result = self._export_attachments_to_sf(
+                                sf_config=sf_config,
+                                sf_record_id=self.sale_order_salesforce_id,
+                                api_version="v52.0",  # adjust if needed
+                                timeout=180,
+                            )
+                            if export_result:
+                                _logger.info(
+                                    f"Attachments successfully exported for Sale Order {self.name}."
+                                )
+                            else:
+                                _logger.warning(
+                                    f"Attachments were not fully exported for Sale Order {self.name}."
+                                )
+                        except Exception as e:
+                            _logger.error(
+                                f"Error exporting attachments for Sale Order {self.name}: {e}"
+                            )
+
     def delete_sale_order_line_to_salesforce(self, line_id, sf_id, is_cron=False):
         if is_cron:
             sf_config = (
