@@ -34,7 +34,7 @@ crm app
         "views/salesforce_instance_views.xml",
         "views/ir_attachment.xml",
     ],
-    "images": ["static/description/icon.png"],
+    "images": ["static/description/banner.gif"],
     "live_test_url": "",
     "currency": "USD",
     "license": "AGPL-3",

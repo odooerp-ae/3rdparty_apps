@@ -1,453 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Odoo-Salesforce Connector</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style type="text/css">
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Lenve, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .oe_container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-        }
-        .oe_title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #875A7B;
-            position: relative;
-            z-index: 1;
-        }
-        .oe_title h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(135, 90, 123, 0.2);
-        }
-        .oe_subtitle {
-            color: #6c757d;
-            font-size: 18px;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-        .oe_section {
-            margin-bottom: 40px;
-            padding: 30px;
-            border-radius: 10px;
-            background-color: #f8f9fa;
-            border-left: 5px solid #875A7B;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: relative;
-            z-index: 1;
-        }
-        .oe_section::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(135, 90, 123, 0.1);
-            z-index: -1;
-        }
-        .oe_section h2 {
-            color: #875A7B;
-            font-size: 24px;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        .oe_description {
-            font-size: 16px;
-            color: #495057;
-            line-height: 1.7;
-        }
-        .oe_highlight {
-            background-color: #f0e6f6;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #875A7B;
-        }
-        .oe_feature-list {
-            list-style-type: none;
-            padding-left: 0;
-            margin: 25px 0;
-        }
-        .oe_feature-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            align-items: flex-start;
-        }
-        .oe_feature-list li:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .oe_feature-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: #875A7B;
-            color: white;
-            border-radius: 50%;
-            margin-right: 15px;
-            flex-shrink: 0;
-            box-shadow: 0 3px 10px rgba(135, 90, 123, 0.3);
-            margin-top: 2px;
-        }
-        .oe_feature-text {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .feature-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .feature-description {
-            color: #6c757d;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-        .oe_dark_section {
-            background-color: #343a40;
-            color: #f8f9fa;
-            padding: 40px;
-            margin-top: 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .oe_slogan {
-            font-size: 28px;
-            font-weight: 700;
-            color: #f8f9fa;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-        .oe_slogan::after {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #875A7B, transparent);
-            bottom: -10px;
-            left: 10%;
-            border-radius: 3px;
-        }
-        .oe_row {
-            margin-bottom: 30px;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .mb-5 {
-            margin-bottom: 30px;
-        }
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-right: -15px;
-            margin-left: -15px;
-        }
-        .w-100 {
-            width: 100%;
-        }
-        .mx-auto {
-            margin-right: auto !important;
-            margin-left: auto !important;
-        }
-        .justify-content-center {
-            justify-content: center !important;
-        }
-        .col-lg-6 {
-            flex: 0 0 50%;
-            max-width: 50%;
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-bottom: 30px;
-        }
-        .col-md-12 {
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-        .mb-4 {
-            margin-bottom: 1.5rem;
-        }
-        .d-flex {
-            display: flex !important;
-        }
-        .p-4 {
-            padding: 1.5rem;
-        }
-        .shadow-sm {
-            box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
-        }
-        .rounded {
-            border-radius: .25rem;
-        }
-        .h-100 {
-            height: 100%;
-        }
-        .bg-white {
-            background-color: #fff !important;
-        }
-        .flex-column {
-            flex-direction: column !important;
-        }
-        .justify-content-between {
-            justify-content: space-between !important;
-        }
-        .align-items-center {
-            align-items: center !important;
-        }
-        .oe_demo_feature {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e9ecef;
-        }
-        .oe_demo_feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        .oe_demo_feature i {
-            font-size: 2.5rem;
-            color: #875A7B;
-            margin-bottom: 15px;
-            background-color: #f8f9fa;
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 2px solid #875A7B;
-        }
-        .oe_demo_feature h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #343a40;
-        }
-        .oe_demo_feature p {
-            color: #6c757d;
-            font-size: 14px;
-            text-align: center;
-            margin-top: 5px;
-        }
-        @media (max-width: 768px) {
-            .col-lg-6 {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-            .oe_demo_feature {
-                margin-bottom: 30px;
-            }
-        }
-        .top-decorator {
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: #875A7B;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        .bottom-decorator {
-            position: absolute;
-            bottom: -50px;
-            left: -50px;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: #875A7B;
-            opacity: 0.1;
-            z-index: 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="oe_container">
-        <div class="oe_title">
-            <h1>Odoo-Salesforce Connector</h1>
-        </div>
-        <div class="oe_subtitle">
-            Seamless integration between Odoo and Salesforce platforms
-        </div>
-        
-        <div class="oe_section">
-            <h2>Core Functionality</h2>
-            <div class="oe_description">
-                <p>The Odoo-Salesforce connector module facilitates seamless data synchronization between Odoo and Salesforce platforms.</p>
-                <div class="oe_highlight">
-                    <p>It enables the automatic exchange of key information like leads, contacts, and opportunities.</p>
-                </div>
-                <p>This integration streamlines sales processes and ensures data consistency across both systems.</p>
-            </div>
-        </div>
-        
-        <div class="oe_section">
-            <h2>Key Features</h2>
-            <ul class="oe_feature-list">
-                <li>
-                    <span class="oe_feature-icon">🔄</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Real-time synchronization of leads, contacts, and opportunities</div>
-                        <div class="feature-description">Automatically sync your sales data between Odoo and Salesforce in real-time, ensuring your team always has the most up-to-date information.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">↔️</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Two-way data flow with conflict resolution</div>
-                        <div class="feature-description">Maintain data integrity with automatic conflict resolution when changes occur in both systems.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">🔗</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Customizable field mapping</div>
-                        <div class="feature-description">Configure how your data maps between Odoo and Salesforce to match your specific business needs.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">🎯</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Automated lead assignment</div>
-                        <div class="feature-description">Automatically assign leads to the right sales representatives based on your defined rules.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">📊</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Opportunity pipeline synchronization</div>
-                        <div class="feature-description">Keep your sales pipeline aligned between both systems with automatic stage tracking and updates.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">📝</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Salesforce quote and order integration</div>
-                        <div class="feature-description">Seamlessly transfer quotes and orders between Salesforce and Odoo for better order management.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">🔍</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Contact and account matching</div>
-                        <div class="feature-description">Smart matching algorithms to identify and merge duplicate contacts and accounts.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">📋</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Detailed synchronization logs</div>
-                        <div class="feature-description">Track all data changes and synchronization activities with comprehensive logging.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">⏱️</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">Scheduled batch synchronization</div>
-                        <div class="feature-description">Configure automatic batch synchronization at your preferred intervals for large data transfers.</div>
-                    </div>
-                </li>
-                <li>
-                    <span class="oe_feature-icon">🔑</span>
-                    <div class="oe_feature-text">
-                        <div class="feature-title">User permissions and access control</div>
-                        <div class="feature-description">Control what data users can access and modify through granular permission settings.</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="oe_dark_section">
-            <div class="oe_row">
-                <h3 class="oe_slogan mb-5">Key Features & Benefits</h3>
-                <div class="row w-100 mx-auto justify-content-center">
-                    <div class="col-lg-6 col-md-12 mb-4 d-flex">
-                        <div class="oe_demo_feature text-center">
-                            <i class="fa fa-exchange"></i>
-                            <h4 class="mt-3">Real-time Data Sync</h4>
-                            <p>Seamlessly sync leads, contacts, and opportunities between Odoo and Salesforce in real-time, ensuring your data is always up-to-date across both platforms.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 mb-4 d-flex">
-                        <div class="oe_demo_feature text-center">
-                            <i class="fa fa-cogs"></i>
-                            <h4 class="mt-3">Custom Field Mapping</h4>
-                            <p>Configure custom field mappings between Odoo and Salesforce to ensure your data is structured exactly how you need it in both systems.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 mb-4 d-flex">
-                        <div class="oe_demo_feature text-center">
-                            <i class="fa fa-phone"></i>
-                            <h4 class="mt-3">Click-to-Call Integration</h4>
-                            <p>Initiate calls directly from Odoo records to Salesforce contacts, with call status automatically updated in both systems.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 mb-4 d-flex">
-                        <div class="oe_demo_feature text-center">
-                            <i class="fa fa-chart-line"></i>
-                            <h4 class="mt-3">Sales Pipeline Integration</h4>
-                            <p>Seamlessly manage your sales pipeline with synchronized opportunity stages, forecasts, and sales activities between Odoo and Salesforce.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 mb-4 d-flex">
-                        <div class="oe_demo_feature text-center">
-                            <i class="fa fa-envelope"></i>
-                            <h4 class="mt-3">Email Integration</h4>
-                            <p>Sync emails and communications between Odoo and Salesforce, maintaining a complete communication history for each lead and opportunity.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 mb-4 d-flex">
-                        <div class="oe_demo_feature text-center">
-                            <i class="fa fa-shield-alt"></i>
-                            <h4 class="mt-3">Secure API Connection</h4>
-                            <p>Establish a secure, encrypted connection between Odoo and Salesforce using OAuth 2.0 authentication for maximum security.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="top-decorator"></div>
-        <div class="bottom-decorator"></div>
-    </div>
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1145,146 +695,12 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <!-- Features Tab -->
-                <div class="tab-pane fade show active" id="features" role="tabpanel" aria-labelledby="features-tab">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-exchange-alt fa-2x text-primary mb-3"></i>
-                                <h4>Real-time Synchronization</h4>
-                                <p>Automatic and bidirectional data synchronization between Odoo and Salesforce in real-time, ensuring data consistency across platforms.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-cogs fa-2x text-primary mb-3"></i>
-                                <h4>Custom Field Mapping</h4>
-                                <p>Flexible mapping of custom fields between Odoo and Salesforce to match your specific business requirements.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-bell fa-2x text-primary mb-3"></i>
-                                <h4>Automated Workflows</h4>
-                                <p>Seamless integration with both systems' workflows to trigger actions based on events in either platform.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-shield-alt fa-2x text-primary mb-3"></i>
-                                <h4>Robust Error Handling</h4>
-                                <p>Comprehensive error tracking and resolution system to ensure smooth operation and data integrity.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-history fa-2x text-primary mb-3"></i>
-                                <h4>Change History Tracking</h4>
-                                <p>Detailed audit log of all data changes and synchronization events for complete traceability.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-sync-alt fa-2x text-primary mb-3"></i>
-                                <h4>Batch Synchronization</h4>
-                                <p>Option to run batch synchronization for large data volumes to optimize system performance.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-lock fa-2x text-primary mb-3"></i>
-                                <h4>Secure Authentication</h4>
-                                <p>Multiple secure authentication methods including OAuth 2.0 for safe API connections.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <div class="feature-item">
-                                <i class="fas fa-chart-line fa-2x text-primary mb-3"></i>
-                                <h4>Analytics Integration</h4>
-                                <p>Combined reporting capabilities to analyze data from both systems for better business insights.</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="text-center my-4 tab-pane fade show active" id="features" role="tabpanel" aria-labelledby="features-tab">
+                    <img src="key-features.png" class="img-fluid rounded shadow-sm" style="max-width: 100%;" alt="Large Image">
                 </div>
+
                 
                 <!-- Screenshots Tab -->
-                <!-- <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
-                    <h3 class="mb-4 text-center">System Screenshots</h3>
-                    <div class="screenshot-gallery">
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-1/400/300.jpg" alt="Dashboard View">
-                            <div class="p-2">
-                                <h6 class="text-center">Dashboard View</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-2/400/300.jpg" alt="Configuration Settings">
-                            <div class="p-2">
-                                <h6 class="text-center">Configuration Settings</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-3/400/300.jpg" alt="Field Mapping">
-                            <div class="p-2">
-                                <h6 class="text-center">Field Mapping</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-4/400/300.jpg" alt="Synchronization Log">
-                            <div class="p-2">
-                                <h6 class="text-center">Synchronization Log</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-5/400/300.jpg" alt="Error Handling">
-                            <div class="p-2">
-                                <h6 class="text-center">Error Handling</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-6/400/300.jpg" alt="Lead Synchronization">
-                            <div class="p-2">
-                                <h6 class="text-center">Lead Synchronization</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-7/400/300.jpg" alt="Contact Synchronization">
-                            <div class="p-2">
-                                <h6 class="text-center">Contact Synchronization</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-8/400/300.jpg" alt="Opportunity Synchronization">
-                            <div class="p-2">
-                                <h6 class="text-center">Opportunity Synchronization</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-9/400/300.jpg" alt="Product Synchronization">
-                            <div class="p-2">
-                                <h6 class="text-center">Product Synchronization</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-10/400/300.jpg" alt="Order Synchronization">
-                            <div class="p-2">
-                                <h6 class="text-center">Order Synchronization</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-11/400/300.jpg" alt="Invoice Synchronization">
-                            <div class="p-2">
-                                <h6 class="text-center">Invoice Synchronization</h6>
-                            </div>
-                        </div>
-                        <div class="screenshot-item">
-                            <img src="https://picsum.photos/seed/odoo-salesforce-12/400/300.jpg" alt="Analytics View">
-                            <div class="p-2">
-                                <h6 class="text-center">Analytics View</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                
                 <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
                     <h3 class="mb-4 text-center">System Screenshots</h3>
                     <div class="screenshot-grid">
@@ -1400,525 +816,244 @@
                 </div>
                 
                 <!-- User Guide Tab -->
-                <!-- <div class="tab-pane fade" id="guide" role="tabpanel" aria-labelledby="guide-tab">
-                    <div class="user-guide-section">
-                        <h3 class="mb-4">User Guide</h3>
-                        <div class="accordion" id="guideAccordion">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Installation Guide
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#guideAccordion">
-                                    <div class="accordion-body">
-                                        <ol>
-                                            <li>Log in to your Odoo instance as an administrator.</li>
-                                            <li>Navigate to Apps menu and click on "Update Apps List".</li>
-                                            <li>Search for "Odoo-Salesforce Integration" in the search bar.</li>
-                                            <li>Click "Install" next to the module.</li>
-                                            <li>After installation, go to Settings > Integrations > Salesforce.</li>
-                                            <li>Enter your Salesforce API credentials and click "Connect".</li>
-                                            <li>Configure the field mappings according to your business requirements.</li>
-                                            <li>Click "Save" and enable synchronization for the required modules.</li>
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Configuration Settings
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#guideAccordion">
-                                    <div class="accordion-body">
-                                        <h5>Authentication Settings</h5>
-                                        <p>To connect your Odoo instance with Salesforce, you'll need to provide the following credentials:</p>
-                                        <ul>
-                                            <li><strong>Client ID</strong>: Your Salesforce API consumer key</li>
-                                            <li><strong>Client Secret</strong>: Your Salesforce API consumer secret</li>
-                                            <li><strong>Username</strong>: Your Salesforce account username</li>
-                                            <li><strong>Password</strong>: Your Salesforce account password</li>
-                                            <li><strong>Security Token</strong>: A token that can be generated from your Salesforce account settings</li>
-                                        </ul>
-                                        <p>These credentials can be obtained from your Salesforce Developer Account or by generating a Connected App in your Salesforce Organization.</p>
-                                        
-                                        <h5>Field Mapping</h5>
-                                        <p>After connecting your accounts, you'll need to configure how fields map between Odoo and Salesforce:</p>
-                                        <ul>
-                                            <li>Navigate to the Field Mapping tab in the Salesforce integration settings</li>
-                                            <li>Select the Odoo model you want to sync (e.g., res.partner, sale.order)</li>
-                                            <li>Map each field from Odoo to its corresponding field in Salesforce</li>
-                                            <li>Click "Save" to apply your mappings</li>
-                                        </ul>
-                                        <p>You can create custom mappings as needed to match your specific business requirements.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Synchronization Process
-                                    </button>
-                                </h2>
-                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#guideAccordion">
-                                    <div class="accordion-body">
-                                        <h5>Automatic Synchronization</h5>
-                                        <p>The integration automatically synchronizes data between Odoo and Salesforce based on your configuration:</p>
-                                        <ul>
-                                            <li>When a record is created or updated in Odoo, it will be automatically synchronized to Salesforce</li>
-                                            <li>When a record is created or updated in Salesforce, it will be automatically synchronized to Odoo</li>
-                                            <li>The synchronization runs in the background without interrupting your regular business operations</li>
-                                        </ul>
-                                        
-                                        <h5>Manual Synchronization</h5>
-                                        <p>You can also trigger synchronization manually when needed:</p>
-                                        <ul>
-                                            <li>Navigate to the Salesforce integration dashboard</li>
-                                            <li>Click the "Run Synchronization" button</li>
-                                            <li>Select which records you want to synchronize</li>
-                                            <li>Click "Confirm" to start the process</li>
-                                        </ul>
-                                        
-                                        <h5>Synchronization Log</h5>
-                                        <p>The system maintains a detailed log of all synchronization activities:</p>
-                                        <ul>
-                                            <li>View the synchronization log in the integration dashboard</li>
-                                            <li>Filter logs by date, record type, or status</li>
-                                            <li>Identify and resolve any synchronization issues</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Error Handling and Troubleshooting
-                                    </button>
-                                </h2>
-                                <div id="accordion-collapse-four" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#guideAccordion">
-                                    <div class="accordion-body">
-                                        <h5>Common Error Types</h5>
-                                        <ul>
-                                            <li><strong>Authentication Errors</strong>: Issues with API credentials or connection</li>
-                                            <li><strong>Data Format Errors</strong>: Mismatch between field types in Odoo and Salesforce</li>
-                                            <li><strong>Validation Errors</strong>: Records failing validation rules in either system</li>
-                                            <li><strong>Permission Errors</strong>: Insufficient permissions to access certain records</li>
-                                        </ul>
-                                        
-                                        <h5>Troubleshooting Steps</h5>
-                                        <ol>
-                                            <li>Check the synchronization log for detailed error messages</li>
-                                            <li>Verify your API credentials in the integration settings</li>
-                                            <li>Review field mappings to ensure proper data formatting</li>
-                                            <li>Check if there are any validation rules or permissions preventing access</li>
-                                            <li>Consult the documentation or contact support for assistance with complex issues</li>
-                                        </ol>
-                                        
-                                        <h5>Resolving Specific Issues</h5>
-                                        <p><strong>Authentication Issues:</strong> Double-check your API credentials and ensure your Salesforce instance is accessible from your Odoo server. If using a sandbox, make sure to select the correct environment.</p>
-                                        <p><strong>Data Format Issues:</strong> Review your field mappings and adjust them to match the data types in both systems. Consider using data transformation rules for complex mappings.</p>
-                                        <p><strong>Validation Issues:</strong> Examine the validation rules in both systems and adjust your mappings or data to comply with these rules.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                
                 <div class="odoo-salesforce-guide tab-pane fade" id="guide" role="tabpanel" aria-labelledby="guide-tab">
-                    <h1>Odoo Salesforce Integration Module: User Guide</h1>
+                    <div class="p-4">
+                        <h2 class="text-primary mb-4">Odoo Salesforce Integration Module: User Guide</h2>
 
-                    <p>This Odoo module provides an integration with Salesforce, enabling synchronization of key business data between your Odoo instance and Salesforce CRM. It streamlines data flow and ensures consistency across both platforms. 🔄</p>
+                        <p>This Odoo module provides an integration with Salesforce, enabling synchronization of key business data between your Odoo instance and Salesforce CRM. It streamlines data flow and ensures consistency across both platforms. 🔄</p>
 
-                    <hr>
+                        <hr>
 
-                    <h2><i class="fas fa-info-circle"></i> 1. Module Overview</h2>
-                    <p>This module facilitates the synchronization of various business records, including customer information, products, sales orders, quotes, opportunities, leads, contracts, and activities, between Odoo and Salesforce. It streamlines data flow and ensures consistency across both platforms. 🔄</p>
+                        <h4 class="text-dark mt-4"><i class="fa fa-info-circle me-2"></i>1. Module Overview</h4>
+                        <p>This module facilitates the synchronization of various business records, including customer information, products, sales orders, quotes, opportunities, leads, contracts, and activities, between Odoo and Salesforce. It streamlines data flow and ensures consistency across both platforms. 🔄</p>
 
-                    <hr>
+                        <hr>
 
-                    <h2><i class="fas fa-cog"></i> 2. Configuration (Salesforce Instance Setup)</h2>
-                    <p>To set up the integration, you need to configure a Salesforce instance within Odoo:</p>
-                    <ol>
-                        <li><strong>Access Configuration</strong>: Navigate to the Salesforce Integration settings in Odoo. Look for a dedicated menu item or a section within General Settings.</li>
-                        <li><strong>Instance Details</strong>: Provide the following Salesforce API credentials and URLs:
+                        <h4 class="text-dark mt-4"><i class="fa fa-cog me-2"></i>2. Configuration (Salesforce Instance Setup)</h4>
+                        <p>To set up the integration, you need to configure a Salesforce instance within Odoo:</p>
+                        <ol>
+                        <li><strong>Access Configuration</strong>: Navigate to the Salesforce Integration settings in Odoo.</li>
+                        <li><strong>Instance Details</strong>: Provide the following Salesforce API credentials:
                             <ul>
-                                <li><strong>Name</strong>: A descriptive name for your Salesforce instance (e.g., "Production Org", "Sandbox").</li>
-                                <li><strong>Consumer Key (Client ID)</strong>: Obtained from your Salesforce Connected App developer dashboard.</li>
-                                <li><strong>Consumer Secret (Client Secret)</strong>: Obtained from your Salesforce Connected App developer dashboard.</li>
-                                <li><strong>Authorization URL</strong>: (Default: https://login.salesforce.com/services/oauth2/authorize)</li>
-                                <li><strong>Authorization Token URL</strong>: (Default: https://login.salesforce.com/services/oauth2/token)</li>
-                                <li><strong>Redirect URL</strong>: (Default: http://localhost:8069/get_auth_code_from_sf) This URL must be registered in your Salesforce Connected App.</li>
-                                <li><strong>Instance URL</strong>: Your Salesforce API URL (e.g., https://yourinstance.salesforce.com).</li>
+                            <li><strong>Name</strong>: A descriptive name for your Salesforce instance (e.g., "Production Org").</li>
+                            <li><strong>Consumer Key</strong>: From your Salesforce Connected App.</li>
+                            <li><strong>Consumer Secret</strong>: From your Salesforce Connected App.</li>
+                            <li><strong>Authorization URL</strong>: Default: <code>https://login.salesforce.com/services/oauth2/authorize</code></li>
+                            <li><strong>Token URL</strong>: Default: <code>https://login.salesforce.com/services/oauth2/token</code></li>
+                            <li><strong>Redirect URL</strong>: Default: <code>http://localhost:8069/get_auth_code_from_sf</code></li>
+                            <li><strong>Instance URL</strong>: e.g., <code>https://yourinstance.salesforce.com</code></li>
                             </ul>
                         </li>
-                        <li><strong>Authentication</strong>: Use the "Salesforce Login" feature (usually a button) to authenticate your Odoo instance with Salesforce. This process will securely generate and store the Auth Code, Access Token, and Refresh Token required for API calls. 🔑</li>
-                        <li><strong>Connection Test</strong>: Utilize the "Salesforce Test" function to verify the connection and credentials. The module can also refresh access tokens automatically if they expire.</li>
-                        <li><strong>Synchronization Limits</strong>: Configure Import Limit and Export Limit to control the number of records synchronized in a single operation. This helps manage performance.</li>
-                        <li><strong>Default Instance</strong>: Mark one instance as "Is default Instance for Cron" if you intend to use scheduled synchronizations. This designates which instance the automated jobs will use. 🤖</li>
-                    </ol>
+                        <li><strong>Authentication</strong>: Use the "Salesforce Login" button to authenticate Odoo with Salesforce.</li>
+                        <li><strong>Connection Test</strong>: Click "Salesforce Test" to verify credentials.</li>
+                        <li><strong>Synchronization Limits</strong>: Set Import/Export limits to manage performance.</li>
+                        <li><strong>Default Instance</strong>: Mark one instance as default for Cron jobs. 🤖</li>
+                        </ol>
 
-                    <hr>
+                        <hr>
 
-                    <h2><i class="fas fa-exchange-alt"></i> 3. Key Synchronized Data & Features</h2>
-                    <p>The module adds Salesforce-specific fields (e.g., x_salesforce_id, x_salesforce_exported, x_is_updated, x_last_modified_on) to various Odoo models to track synchronization status and Salesforce IDs. These fields are crucial for managing the link between Odoo and Salesforce records.</p>
+                        <h4 class="text-dark mt-4"><i class="fa fa-exchange-alt me-2"></i>3. Key Synchronized Data & Features</h4>
+                        <p>This module adds Salesforce-specific fields (e.g., <code>x_salesforce_id</code>, <code>x_is_updated</code>) to various models for tracking sync status.</p>
 
-                    <p>The module supports synchronization for the following record types:</p>
-                    <ul>
-                        <li><strong>Accounts/Contacts (res.partner)</strong>: Exports and updates customer/contact records to Salesforce. 🤝</li>
-                        <li><strong>Products (product.template, product.product)</strong>: Exports product templates and their variants. 📦</li>
-                        <li><strong>Sales Orders (sale.order)</strong>: Exports sales orders. 📝</li>
-                        <li><strong>Quotations (sale.order inherited)</strong>: Manages quotations, including export and deletion synchronization. 📧</li>
-                        <li><strong>Opportunities (crm.lead)</strong>: Exports CRM opportunities. 💰</li>
-                        <li><strong>Leads (crm.lead)</strong>: Exports lead data to Salesforce. 📞</li>
-                        <li><strong>Contracts (sf.contract)</strong>: Exports and updates contracts to Salesforce, including a function to activate contracts in Salesforce. 📄</li>
-                        <li><strong>Mail Activities (mail.activity)</strong>: Synchronizes activities like tasks and events. ✅</li>
-                        <li><strong>Calendar Events (calendar.event)</strong>: Exports calendar events. 🗓️</li>
-                        <li><strong>Attachments (ir.attachment)</strong>: Tracks Salesforce Document IDs for attachments, indicating potential synchronization of associated files. 📎</li>
-                    </ul>
-                    <p class="note">
-                        <strong>Note</strong> The module tracks the Last Modified Time for various Salesforce objects (Accounts, Contacts, Products, Quotes, Orders, Leads, Opportunities, Contracts, Events, Tasks) to manage incremental synchronization, ensuring only updated records are processed.
-                    </p>
+                        <p>Supported record types:</p>
+                        <ul>
+                        <li><strong>Accounts/Contacts</strong> (<code>res.partner</code>) 🤝</li>
+                        <li><strong>Products</strong> (<code>product.template</code>, <code>product.product</code>) 📦</li>
+                        <li><strong>Sales Orders</strong> (<code>sale.order</code>) 📝</li>
+                        <li><strong>Quotations</strong> (inherited from <code>sale.order</code>) 📧</li>
+                        <li><strong>Opportunities & Leads</strong> (<code>crm.lead</code>) 💰📞</li>
+                        <li><strong>Contracts</strong> (<code>sf.contract</code>) 📄</li>
+                        <li><strong>Mail Activities</strong> (<code>mail.activity</code>) ✅</li>
+                        <li><strong>Calendar Events</strong> (<code>calendar.event</code>) 🗓️</li>
+                        <li><strong>Attachments</strong> (<code>ir.attachment</code>) 📎</li>
+                        </ul>
 
-                    <hr>
+                        <div class="alert alert-info mt-3">
+                        <strong>Note:</strong> Only updated records are processed based on their last modified time.
+                        </div>
 
-                    <h2><i class="fas fa-sync-alt"></i> 4. Synchronization Process</h2>
-                    <p>Synchronization can occur in the following ways:</p>
-                    <ul>
-                        <li><strong>Manually</strong>: Records can be exported or updated to Salesforce directly from their respective Odoo forms or list views. For example, updating an existing customer in Odoo will trigger an update to Salesforce if it has been previously exported. Look for dedicated "Export to Salesforce" or "Sync Now" buttons. 🚀</li>
-                        <li><strong>Scheduled (Cron Jobs)</strong>: The module includes scheduled actions to automatically refresh tokens and import/export data (e.g., _scheduler_export_leads_to_sf, _scheduler_export_contracts_to_sf, _scheduler_export_event_to_sf). This relies on a designated "default instance" configured in the Salesforce settings. Automated jobs ensure continuous data consistency. ⏰</li>
-                    </ul>
+                        <hr>
 
-                    <hr>
+                        <h4 class="text-dark mt-4"><i class="fa fa-sync-alt me-2"></i>4. Synchronization Process</h4>
+                        <ul>
+                        <li><strong>Manual</strong>: Export records from form/list view with "Export to Salesforce" or "Sync Now" buttons. 🚀</li>
+                        <li><strong>Cron Jobs</strong>: Auto-import/export via scheduled jobs (e.g., <code>_scheduler_export_leads_to_sf</code>). ⏰</li>
+                        </ul>
 
-                    <h2><i class="fas fa-wrench"></i> 5. Basic Troubleshooting</h2>
-                    <ul>
-                        <li><strong>Authentication Issues</strong>: If you encounter connection problems, try running the "Salesforce Test" to diagnose the issue. If the session has expired, the module attempts to refresh the token automatically. Ensure your Client Key, Client Secret, Redirect URL, and Instance URL are correctly configured and precisely match your Salesforce Connected App settings. 🚫🔑</li>
-                        <li><strong>Validation Errors</strong>: The module prevents creating multiple Salesforce instances for the same company or setting more than one instance as default for cron jobs. You may also encounter errors if required fields for Salesforce export (e.g., Company name, Contact name, SF Status for Leads, mandatory fields in Salesforce) are missing or improperly formatted in Odoo. Check Odoo server logs for detailed error messages. 🐛</li>
-                    </ul>
+                        <hr>
+
+                        <h4 class="text-dark mt-4"><i class="fa fa-wrench me-2"></i>5. Basic Troubleshooting</h4>
+                        <ul>
+                        <li><strong>Authentication Issues</strong>: Use "Salesforce Test" to diagnose problems. Ensure all credentials match your Salesforce Connected App. 🚫🔑</li>
+                        <li><strong>Validation Errors</strong>: Only one instance per company should be default. Ensure all required fields are properly filled. Check Odoo logs for details. 🐛</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- FAQ Tab -->
-                <!-- <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
-                    <div class="faq-section">
-                        <h3 class="mb-4">Frequently Asked Questions</h3>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>What data can be synchronized between Odoo and Salesforce?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The integration supports synchronization of various data types including:</p>
-                                <ul>
-                                    <li>Leads and contacts</li>
-                                    <li>Opportunities and quotes</li>
-                                    <li>Products and services</li>
-                                    <li>Orders and invoices</li>
-                                    <li>Users and teams</li>
-                                    <li>Custom objects and fields</li>
-                                </ul>
-                                <p>You can configure which data types to synchronize based on your business needs.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>How does the synchronization process work?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The integration uses a bidirectional synchronization process:</p>
-                                <ol>
-                                    <li>When a record is created or modified in Odoo, it is automatically synchronized to Salesforce</li>
-                                    <li>When a record is created or modified in Salesforce, it is automatically synchronized to Odoo</li>
-                                    <li>The system tracks changes using timestamps to avoid duplicate synchronization</li>
-                                    <li>In case of conflicts, the most recent change takes precedence (configurable)</li>
-                                </ol>
-                                <p>You can also trigger manual synchronization when needed.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>What happens if there's a conflict between Odoo and Salesforce?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>When a conflict occurs (i.e., the same record is modified in both systems before synchronization), the integration follows a set of conflict resolution rules:</p>
-                                <ul>
-                                    <li>By default, the most recent change is preserved</li>
-                                    <li>You can configure which system's data takes precedence</li>
-                                    <li>Conflicts are logged and can be reviewed in the synchronization log</li>
-                                    <li>Manual intervention is required for complex conflicts</li>
-                                </ul>
-                                <p>You can customize conflict resolution rules in the integration settings.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>Is the integration secure?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Yes, the Odoo-Salesforce integration is designed with security as a top priority:</p>
-                                <ul>
-                                    <li>All data transfers are encrypted using HTTPS</li>
-                                    <li>OAuth 2.0 authentication ensures secure API connections</li>
-                                    <li>Salesforce API credentials are stored securely with encryption</li>
-                                    <li>Access controls are enforced to protect sensitive data</li>
-                                    <li>Compliance with GDPR and other data protection regulations</li>
-                                </ul>
-                                <p>We follow industry best practices to ensure your data remains secure throughout the synchronization process.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>Can I customize the field mappings?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Yes, the integration provides extensive customization options for field mappings:</p>
-                                <ul>
-                                    <li>You can map any field from Odoo to any field in Salesforce</li>
-                                    <li>Support for one-to-many and many-to-one mappings</li>
-                                    <li>Custom data transformation rules for complex field conversions</li>
-                                    <li>Conditional mappings based on record attributes</li>
-                                    <li>Default values and formula fields</li>
-                                </ul>
-                                <p>The field mapping interface is intuitive and allows you to create sophisticated synchronization rules to match your specific business requirements.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>How often does the synchronization run?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The synchronization frequency can be configured based on your needs:</p>
-                                <ul>
-                                    <li>Real-time synchronization for critical data (immediate after changes)</li>
-                                    <li>Periodic synchronization (e.g., every 5, 15, or 30 minutes)</li>
-                                    <li>Manual synchronization on demand</li>
-                                    <li>Batch synchronization for large data volumes</li>
-                                </ul>
-                                <p>You can adjust the synchronization frequency in the integration settings to balance between data freshness and system performance.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>What happens if my Salesforce API limits are reached?</span>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The integration includes safeguards to handle Salesforce API limits:</p>
-                                <ul>
-                                    <li>Automatic rate limiting to stay within Salesforce API call limits</li>
-                                    <li>Smart batching to optimize API usage</li>
-                                    <li>Queue-based processing for large data volumes</li>
-                                    <li>Retry mechanism for failed API calls</li>
-                                    <li>Notifications when approaching API limits</li>
-                                </ul>
-                                <p>The system will automatically pause synchronization when approaching API limits and resume when limits reset, ensuring continuous operation without manual intervention.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            
                 <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
-                    <div class="faq-header">
-                        <h1>Odoo - Salesforce Integration Module</h1>
-                        <p>Frequently Asked Questions (FAQs)</p>
-                    </div>
-
-                    <div class="faq-section">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>This document provides answers to common questions about the Odoo - Salesforce Integration module, covering setup, data synchronization, troubleshooting, and supported features.</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Welcome to the Odoo - Salesforce Integration Module FAQ. This comprehensive guide will help you understand how to set up, configure, and troubleshoot the integration between Odoo and Salesforce.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>1. General & Setup</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p><strong>What is the purpose of this module?</strong></p>
-                                <p>This module facilitates bi-directional data synchronization and management between Odoo and Salesforce, allowing you to seamlessly manage various business records across both platforms.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>What Salesforce API version does this integration use?</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The module primarily uses Salesforce API versions <code>v52.0</code> (for Quote and Order related operations) and <code>v39.0</code>/<code>v40.0</code> for other objects like Products and Events.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>How do I configure the Salesforce instance in Odoo?</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>You need to set up a Salesforce instance record in Odoo. This involves providing the following Salesforce API credentials:</p>
-                                <ul>
-                                    <li><strong>Consumer Key (Client ID):</strong> Obtained from your Salesforce connected app.</li>
-                                    <li><strong>Consumer Secret (Client Secret):</strong> Obtained from your Salesforce connected app.</li>
-                                    <li><strong>Authorization URL:</strong> Default is <code>https://login.salesforce.com/services/oauth2/authorize</code>.</li>
-                                    <li><strong>Authorization Token URL:</strong> Default is <code>https://login.salesforce.com/services/oauth2/token</code>.</li>
-                                    <li><strong>Redirect URL:</strong> Default is <code>http://localhost:8069/get_salesforce_token</code> (ensure this matches your Salesforce connected app's callback URL and is accessible).</li>
-                                </ul>
-                                <p>You will also need to authorize the connection to obtain the access token.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>What happens if there is no default Salesforce instance configured?</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Many synchronization and export operations will fail with an error message like "There is no default Salesforce instance" if a default instance is not configured in Odoo.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>2. Data Synchronization</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p class="section-title">2.1. Supported Objects & Sync Direction</p>
-                                <p><strong>Which Odoo records can be synchronized with Salesforce?</strong></p>
-                                <p>The module supports synchronization for the following Odoo objects with their corresponding Salesforce counterparts:</p>
-                                <ul>
-                                    <li>Accounts (<code>res.partner</code> where <code>is_company=True</code>)</li>
-                                    <li>Contacts (<code>res.partner</code> where <code>is_company=False</code>)</li>
-                                    <li>Products (<code>product.product</code>)</li>
-                                    <li>Product Templates (<code>product.template</code>)</li>
-                                    <li>Sale Quotations (<code>sale.order</code> in draft/sent state)</li>
-                                    <li>Sale Orders (<code>sale.order</code>)</li>
-                                    <li>Leads (<code>crm.lead</code> of type 'lead')</li>
-                                    <li>Opportunities (<code>crm.lead</code> of type 'opportunity')</li>
-                                    <li>Contracts (<code>sf.contract</code>)</li>
-                                    <li>Events (<code>calendar.event</code>)</li>
-                                    <li>Activities (Tasks) (<code>mail.activity</code>)</li>
-                                    <li>Attachments (<code>ir.attachment</code>)</li>
-                                </ul>
-                                <p><strong>Is the synchronization bi-directional (Odoo to Salesforce and Salesforce to Odoo)?</strong></p>
-                                <p>Based on the code, the module supports:</p>
-                                <ul>
-                                    <li>Export from Odoo to Salesforce: For Accounts, Contacts, Products, Product Templates, Sale Quotations, Sale Orders, Leads, Opportunities, Contracts, Events, and Activities.</li>
-                                    <li>Import from Salesforce to Odoo: For Accounts, Contacts, Products, Product Templates, Quotes, Orders, Leads, Opportunities, Contracts, Events, and Activities (via scheduled cron jobs).</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>2.2. Synchronization Triggers & Schedulers</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p><strong>How is data synchronization initiated?</strong></p>
-                                <p>Synchronization can be initiated in two ways:</p>
-                                <ul>
-                                    <li>Manual Export: Users can manually trigger the export of individual records (e.g., Partners, Products, Leads, Opportunities, Quotes, Orders, Contracts, Events, Activities) from their respective Odoo forms.</li>
-                                    <li>Scheduled Cron Jobs: The module includes scheduled actions (cron jobs) to automatically import and export data for various objects at predefined intervals (e.g., <code>_scheduler_import_sf_accounts</code>, <code>_scheduler_export_products_to_sf</code>).</li>
-                                </ul>
-                                <p><strong>How does the module handle updates to records in Odoo?</strong></p>
-                                <p>Records in Odoo have an <code>x_is_updated</code> field. When certain fields are modified (e.g., <code>x_last_modified_on</code> for partners), this flag is set to <code>True</code>, indicating the record needs to be updated in Salesforce during the next export sync.</p>
-                                <p><strong>How are deleted records handled?</strong></p>
-                                <p>The <code>unlink</code> method for <code>sale.order</code> (Quotes/Sale Orders) and <code>sale.order.line</code> is extended to attempt deletion of corresponding records in Salesforce if they were previously exported (i.e., have a Salesforce ID). This helps maintain data consistency.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>2.3. Specific Object Sync Details</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p><strong>How are Products and Product Templates synchronized?</strong></p>
-                                <p>Product Templates and their variants can be exported to Salesforce as <code>Product2</code> records. The integration also handles the creation and updating of <code>PricebookEntry</code> records in Salesforce for these products, linking them to a standard price book.</p>
-                                <p><strong>What happens when a Sale Order's contract changes?</strong></p>
-                                <p>If the <code>contract_id</code> on a Sale Order is changed, the module validates that the Odoo order date is not earlier than the contract's start date, raising a <code>UserError</code> if it is.</p>
-                                <p><strong>How are attachments synchronized?</strong></p>
-                                <p>The module includes logic to export attachments from Odoo to Salesforce. It uses <code>ir.attachment</code> records and tracks the Salesforce <code>ContentDocumentId</code> to prevent duplicate uploads.</p>
-                                <p><strong>How are addresses synchronized for Partners/Contacts?</strong></p>
-                                <p>When partners (companies or contacts) are exported, their main addresses are synchronized. Additionally, separate delivery addresses linked to contacts (child <code>res.partner</code> records with <code>type='delivery'</code>) are also created or updated in Salesforce.</p>
-                                <p><strong>Can I export Leads and Opportunities to Salesforce?</strong></p>
-                                <p>Yes, <code>crm.lead</code> records in Odoo can be exported to Salesforce as either Leads or Opportunities, depending on their type in Odoo.</p>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>3. Troubleshooting & Common Issues</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                            </div>
-                            <div class="faq-answer">
-                                <p><strong>What should I do if a record fails to export to Salesforce?</strong></p>
-                                <p>The module logs errors to Odoo's log file (e.g., <code>_logger.error</code>). Check the Odoo server logs for detailed error messages, as these often include the Salesforce response which can pinpoint the exact issue (e.g., <code>FIELD_INTEGRITY_EXCEPTION</code>, missing required fields, permissions issues).</p>
-                                
-                                <div class="error-message">
-                                    Error logs will contain specific Salesforce API responses that help identify the root cause of synchronization failures.
+                    <div class="oe_row oe_spaced">
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">Frequently Asked Questions</h3>
+                        <div class="col-12 text-left">
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> What is the purpose of this module?
+                                    </h5>
                                 </div>
-                                
-                                <p><strong>I'm getting "There is no Salesforce instance" error. What's wrong?</strong></p>
-                                <p>This error indicates that no Salesforce instance has been configured or that the configured instance is not set as the default one for your company. Go to the Salesforce configuration in Odoo and ensure an instance is properly set up and authorized.</p>
-                                
-                                <div class="warning-message">
-                                    Always verify that your Salesforce instance is configured and set as the default before attempting any synchronization.
+                                <div class="card-body text-muted"> This module facilitates bi-directional data synchronization and management between Odoo and Salesforce, allowing you to seamlessly manage various business records across both platforms.
                                 </div>
-                                
-                                <p><strong>Why might a <code>ContentDocumentLink</code> fail when exporting attachments?</strong></p>
-                                <p>Even if the attachment (ContentVersion) is created, linking it to a record can fail due to:</p>
-                                <ul>
-                                    <li>Insufficient permissions for the Salesforce integration user on the target record (e.g., Quote, Sale Order).</li>
-                                    <li>The target record itself is in a state that prevents linking (e.g., archived, read-only).</li>
-                                    <li>Incorrect <code>ShareType</code> or <code>Visibility</code> settings in the <code>ContentDocumentLink</code> payload (less common for a "bad ID" error, but worth checking).</li>
-                                </ul>
-                                <p>Always check Salesforce debug logs for the precise error.</p>
-                                
-                                <p><strong>I encountered "Please Select 1 record to Export" error.</strong></p>
-                                <p>This <code>UserError</code> is raised by the module when you try to manually export multiple records at once for certain objects (e.g., Products, Events) which are designed for single-record manual export. Select only one record at a time for manual export. Scheduled cron jobs will process multiple records automatically.</p>
-                                
-                                <div class="success-message">
-                                    Scheduled cron jobs can handle bulk exports, while manual exports are limited to single records for certain object types.
+                            </div>
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> What Salesforce API version does this integration use?
+                                    </h5>
                                 </div>
-                                
-                                <p><strong>Why are some fields not synchronizing correctly?</strong></p>
-                                <p>Possible reasons include:</p>
-                                <ul>
-                                    <>The field mapping in the integration code might be incorrect or missing.</li>
-                                    <li>Salesforce field-level security or validation rules might be preventing the update.</li>
-                                    <li>Data type mismatch between Odoo and Salesforce fields.</li>
-                                    <li>The Odoo record's <code>x_is_updated</code> flag is not correctly set.</li>
-                                </ul>
-                                <p>Review the specific <code>sendDataToSf</code> or <code>create/update_sf_dict</code> methods in the relevant Python file and check Salesforce validation rules/permissions.</p>
+                                <div class="card-body text-muted"> The module primarily uses Salesforce API versions <code>v52.0</code> (for Quote and Order related operations) and <code>v39.0</code>/<code>v40.0</code> for other objects like Products and Events.
+                                </div>
                             </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <span>Module Support & SLA</span>
-                                <i class="fas fa-chevron-down icon"></i>
-                                <!-- <h5 class="m-0">
-                                    <i class="fa fa-info-circle mr-2" style="color:#681c56;"></i> Module Support & SLA
-                                </h5> -->
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> How do I configure the Salesforce instance in Odoo?
+                                    </h5>
+                                </div>
+                                <div class="card-body text-muted"> You need to set up a Salesforce instance record in Odoo. This involves providing the following Salesforce API credentials:
+                                    <ul>
+                                        <li><strong>Consumer Key (Client ID):</strong> Obtained from your Salesforce connected app.</li>
+                                        <li><strong>Consumer Secret (Client Secret):</strong> Obtained from your Salesforce connected app.</li>
+                                        <li><strong>Authorization URL:</strong> Default is <code>https://login.salesforce.com/services/oauth2/authorize</code>.</li>
+                                        <li><strong>Authorization Token URL:</strong> Default is <code>https://login.salesforce.com/services/oauth2/token</code>.</li>
+                                        <li><strong>Redirect URL:</strong> Default is <code>http://localhost:8069/get_salesforce_token</code> (ensure this matches your Salesforce connected app's callback URL and is accessible).</li>
+                                    </ul>
+                                    <p>You will also need to authorize the connection to obtain the access token.</p>
+                                </div>
                             </div>
-                            <div class="faq-answer">
-                                For any support related to this Odoo module, please contact us at <b>apps@odooerp.ae</b>
-                                <br>
-                                Our standard <b>response time (SLA)</b> for support queries is between <b>12 to 48 hours.</b>
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> What happens if there is no default Salesforce instance configured?
+                                    </h5>
+                                </div>
+                                <div class="card-body text-muted"> Many synchronization and export operations will fail with an error message like "There is no default Salesforce instance" if a default instance is not configured in Odoo.
+                                </div>
+                            </div>
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> Which Odoo records can be synchronized with Salesforce?
+                                    </h5>
+                                </div>
+                                <div class="card-body text-muted"> The module supports synchronization for the following Odoo objects with their corresponding Salesforce counterparts:
+                                    <ul>
+                                            <li>Accounts (<code>res.partner</code> where <code>is_company=True</code>)</li>
+                                            <li>Contacts (<code>res.partner</code> where <code>is_company=False</code>)</li>
+                                            <li>Products (<code>product.product</code>)</li>
+                                            <li>Product Templates (<code>product.template</code>)</li>
+                                            <li>Sale Quotations (<code>sale.order</code> in draft/sent state)</li>
+                                            <li>Sale Orders (<code>sale.order</code>)</li>
+                                            <li>Leads (<code>crm.lead</code> of type 'lead')</li>
+                                            <li>Opportunities (<code>crm.lead</code> of type 'opportunity')</li>
+                                            <li>Contracts (<code>sf.contract</code>)</li>
+                                            <li>Events (<code>calendar.event</code>)</li>
+                                            <li>Activities (Tasks) (<code>mail.activity</code>)</li>
+                                            <li>Attachments (<code>ir.attachment</code>)</li>
+                                        </ul>
+                                        <p><strong>Is the synchronization bi-directional (Odoo to Salesforce and Salesforce to Odoo)?</strong></p>
+                                        <p>Based on the code, the module supports:</p>
+                                        <ul>
+                                            <li>Export from Odoo to Salesforce: For Accounts, Contacts, Products, Product Templates, Sale Quotations, Sale Orders, Leads, Opportunities, Contracts, Events, and Activities.</li>
+                                            <li>Import from Salesforce to Odoo: For Accounts, Contacts, Products, Product Templates, Quotes, Orders, Leads, Opportunities, Contracts, Events, and Activities (via scheduled cron jobs).</li>
+                                        </ul>
+                                </div>
+                            </div>
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> How is data synchronization initiated?
+                                    </h5>
+                                </div>
+                                <div class="card-body text-muted"> Synchronization can be initiated in two ways:
+                                    <ul>
+                                        <li>Manual Export: Users can manually trigger the export of individual records (e.g., Partners, Products, Leads, Opportunities, Quotes, Orders, Contracts, Events, Activities) from their respective Odoo forms.</li>
+                                        <li>Scheduled Cron Jobs: The module includes scheduled actions (cron jobs) to automatically import and export data for various objects at predefined intervals (e.g., <code>_scheduler_import_sf_accounts</code>, <code>_scheduler_export_products_to_sf</code>).</li>
+                                    </ul>
+                                    <p><strong>How does the module handle updates to records in Odoo?</strong></p>
+                                    <p>Records in Odoo have an <code>x_is_updated</code> field. When certain fields are modified (e.g., <code>x_last_modified_on</code> for partners), this flag is set to <code>True</code>, indicating the record needs to be updated in Salesforce during the next export sync.</p>
+                                    <p><strong>How are deleted records handled?</strong></p>
+                                    <p>The <code>unlink</code> method for <code>sale.order</code> (Quotes/Sale Orders) and <code>sale.order.line</code> is extended to attempt deletion of corresponding records in Salesforce if they were previously exported (i.e., have a Salesforce ID). This helps maintain data consistency.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> How are Products and Product Templates synchronized?
+                                    </h5>
+                                </div>
+                                <div class="card-body text-muted">
+                                    <p>Product Templates and their variants can be exported to Salesforce as <code>Product2</code> records. The integration also handles the creation and updating of <code>PricebookEntry</code> records in Salesforce for these products, linking them to a standard price book.</p>
+                                        <p><strong>What happens when a Sale Order's contract changes?</strong></p>
+                                        <p>If the <code>contract_id</code> on a Sale Order is changed, the module validates that the Odoo order date is not earlier than the contract's start date, raising a <code>UserError</code> if it is.</p>
+                                        <p><strong>How are attachments synchronized?</strong></p>
+                                        <p>The module includes logic to export attachments from Odoo to Salesforce. It uses <code>ir.attachment</code> records and tracks the Salesforce <code>ContentDocumentId</code> to prevent duplicate uploads.</p>
+                                        <p><strong>How are addresses synchronized for Partners/Contacts?</strong></p>
+                                        <p>When partners (companies or contacts) are exported, their main addresses are synchronized. Additionally, separate delivery addresses linked to contacts (child <code>res.partner</code> records with <code>type='delivery'</code>) are also created or updated in Salesforce.</p>
+                                        <p><strong>Can I export Leads and Opportunities to Salesforce?</strong></p>
+                                        <p>Yes, <code>crm.lead</code> records in Odoo can be exported to Salesforce as either Leads or Opportunities, depending on their type in Odoo.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0"> <i class="fa fa-question-circle mr-2" style="color:#875A7B;"></i> What should I do if a record fails to export to Salesforce?
+                                    </h5>
+                                </div>
+                                <div class="card-body text-muted">
+                                    <p>The module logs errors to Odoo's log file (e.g., <code>_logger.error</code>). Check the Odoo server logs for detailed error messages, as these often include the Salesforce response which can pinpoint the exact issue (e.g., <code>FIELD_INTEGRITY_EXCEPTION</code>, missing required fields, permissions issues).</p>
+                                        
+                                        <div class="error-message">
+                                            Error logs will contain specific Salesforce API responses that help identify the root cause of synchronization failures.
+                                        </div>
+                                        
+                                        <p><strong>I'm getting "There is no Salesforce instance" error. What's wrong?</strong></p>
+                                        <p>This error indicates that no Salesforce instance has been configured or that the configured instance is not set as the default one for your company. Go to the Salesforce configuration in Odoo and ensure an instance is properly set up and authorized.</p>
+                                        
+                                        <div class="warning-message">
+                                            Always verify that your Salesforce instance is configured and set as the default before attempting any synchronization.
+                                        </div>
+                                        
+                                        <p><strong>Why might a <code>ContentDocumentLink</code> fail when exporting attachments?</strong></p>
+                                        <p>Even if the attachment (ContentVersion) is created, linking it to a record can fail due to:</p>
+                                        <ul>
+                                            <li>Insufficient permissions for the Salesforce integration user on the target record (e.g., Quote, Sale Order).</li>
+                                            <li>The target record itself is in a state that prevents linking (e.g., archived, read-only).</li>
+                                            <li>Incorrect <code>ShareType</code> or <code>Visibility</code> settings in the <code>ContentDocumentLink</code> payload (less common for a "bad ID" error, but worth checking).</li>
+                                        </ul>
+                                        <p>Always check Salesforce debug logs for the precise error.</p>
+                                        
+                                        <p><strong>I encountered "Please Select 1 record to Export" error.</strong></p>
+                                        <p>This <code>UserError</code> is raised by the module when you try to manually export multiple records at once for certain objects (e.g., Products, Events) which are designed for single-record manual export. Select only one record at a time for manual export. Scheduled cron jobs will process multiple records automatically.</p>
+                                        
+                                        <div class="success-message">
+                                            Scheduled cron jobs can handle bulk exports, while manual exports are limited to single records for certain object types.
+                                        </div>
+                                        
+                                        <p><strong>Why are some fields not synchronizing correctly?</strong></p>
+                                        <p>Possible reasons include:</p>
+                                        <ul>
+                                            <>The field mapping in the integration code might be incorrect or missing.</li>
+                                            <li>Salesforce field-level security or validation rules might be preventing the update.</li>
+                                            <li>Data type mismatch between Odoo and Salesforce fields.</li>
+                                            <li>The Odoo record's <code>x_is_updated</code> flag is not correctly set.</li>
+                                        </ul>
+                                        <p>Review the specific <code>sendDataToSf</code> or <code>create/update_sf_dict</code> methods in the relevant Python file and check Salesforce validation rules/permissions.</p>
+                                </div>
+                            </div>
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header bg-white font-weight-bold lead">
+                                    <h5 class="m-0">
+                                        <i class="fa fa-info-circle mr-2" style="color:#681c56;"></i> Module Support & SLA
+                                    </h5>
+                                </div>
+                                <div class="card-body text-muted">
+                                    For any support related to this Odoo module, please contact us at <b>apps@odooerp.ae</b>
+                                    <br>
+                                    Our standard <b>response time (SLA)</b> for support queries is between <b>12 to 48 hours.</b>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
