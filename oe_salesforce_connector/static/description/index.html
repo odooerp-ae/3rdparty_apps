@@ -799,13 +799,325 @@
         border-top: 1px solid #eee;
         margin: 25px 0;
     }
+
+    :root {
+            --primary-color: #2a2d64;
+            --secondary-color: #4f46e5;
+            --accent-color: #6366f1;
+            --text-color: #333;
+            --light-bg: #f9fafb;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: #f5f7fa;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .faq-section {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .faq-header h3 {
+            color: var(--primary-color);
+            padding: 1.5rem;
+            margin: 0;
+            font-size: 1.5rem;
+            background-color: var(--light-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-bg);
+        }
+
+        .faq-question.active {
+            background-color: var(--light-bg);
+            color: var(--primary-color);
+        }
+
+        .faq-question.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-question .icon {
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            padding: 0 1.5rem;
+            background-color: white;
+        }
+
+        .faq-answer.active {
+            max-height: 1000px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            margin: 0.75rem 0;
+        }
+
+        .faq-answer ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer code {
+            background-color: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        .faq-answer .error-message {
+            color: var(--error-color);
+            font-weight: 600;
+            padding: 0.5rem;
+            border-left: 3px solid var(--error-color);
+            background-color: rgba(239, 68, 68, 0.05);
+            margin: 1rem 0;
+        }
+
+        .faq-answer .warning-message {
+            color: var(--warning-color);
+            font-weight: 600;
+            padding: 0.5rem;
+            border-left: 3px solid var(--warning-color);
+            background-color: rgba(245, 158, 11, 0.05);
+            margin: 1rem 0;
+        }
+
+        .faq-answer .success-message {
+            color: var(--success-color);
+            font-weight: 600;
+            padding: 0.5rem;
+            border-left: 3px solid var(--success-color);
+            background-color: rgba(16, 185, 129, 0.05);
+            margin: 1rem 0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .faq-header h1 {
+                font-size: 2rem;
+            }
+            
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        .screenshot-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .screenshot-item {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: white;
+    }
+
+    .screenshot-img-container {
+        position: relative;
+        overflow: hidden;
+        height: 0;
+        padding-bottom: 75%; /* 4:3 aspect ratio */
+        transition: transform 0.3s ease;
+    }
+
+    .screenshot-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        transform: scale(1);
+    }
+
+    .screenshot-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .screenshot-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .screenshot-item:hover .screenshot-img {
+        transform: scale(1.1);
+    }
+
+    .screenshot-item:hover .screenshot-overlay {
+        opacity: 1;
+    }
+
+    .screenshot-item:hover .screenshot-img-container {
+        cursor: pointer;
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 50px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+        position: relative;
+        margin: auto;
+        padding: 0;
+        width: 80%;
+        max-width: 1200px;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-img {
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        object-fit: contain;
+    }
+
+    .modal-caption {
+        text-align: center;
+        color: white;
+        padding: 20px;
+        font-size: 18px;
+    }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .close:hover {
+        color: #ccc;
+    }
+
+    @media (max-width: 768px) {
+        .screenshot-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+    }
     </style>
 </head>
 <body>
     <!-- Header Section with Image and Core Functionality -->
     <section class="header-section">
         <div class="container">
-            <img src="https://picsum.photos/seed/odoo-salesforce/1200/400.jpg" alt="Odoo-Salesforce Integration" class="header-image">
+            <img src="salesforcexodoo.png" alt="Odoo-Salesforce Integration" class="header-image">
             <h1 class="mb-4">Odoo-Salesforce Integration</h1>
             <div class="core-functionality">
                 <p>The Odoo-Salesforce connector seamlessly integrates your Odoo ERP system with Salesforce CRM, enabling real-time data synchronization between your business applications. This powerful integration allows you to manage customer relationships, sales pipelines, and business processes across both platforms with ease, eliminating manual data entry and ensuring data consistency. With automatic bidirectional synchronization of leads, contacts, opportunities, and more, your teams can work with a single source of truth, improving collaboration and decision-making.</p>
@@ -895,7 +1207,7 @@
                 </div>
                 
                 <!-- Screenshots Tab -->
-                <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
+                <!-- <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
                     <h3 class="mb-4 text-center">System Screenshots</h3>
                     <div class="screenshot-gallery">
                         <div class="screenshot-item">
@@ -967,6 +1279,120 @@
                         <div class="screenshot-item">
                             <img src="https://picsum.photos/seed/odoo-salesforce-12/400/300.jpg" alt="Analytics View">
                             <div class="p-2">
+                                <h6 class="text-center">Analytics View</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
+                    <h3 class="mb-4 text-center">System Screenshots</h3>
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-1/400/300.jpg" alt="Dashboard View" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Dashboard View</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-2/400/300.jpg" alt="Configuration Settings" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Configuration Settings</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-3/400/300.jpg" alt="Field Mapping" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Field Mapping</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-4/400/300.jpg" alt="Synchronization Log" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Synchronization Log</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-5/400/300.jpg" alt="Error Handling" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Error Handling</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-6/400/300.jpg" alt="Lead Synchronization" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Lead Synchronization</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-7/400/300.jpg" alt="Contact Synchronization" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Contact Synchronization</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-8/400/300.jpg" alt="Opportunity Synchronization" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Opportunity Synchronization</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-9/400/300.jpg" alt="Product Synchronization" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Product Synchronization</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-10/400/300.jpg" alt="Order Synchronization" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Order Synchronization</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-11/400/300.jpg" alt="Invoice Synchronization" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
+                                <h6 class="text-center">Invoice Synchronization</h6>
+                            </div>
+                        </div>
+                        <div class="screenshot-item">
+                            <div class="screenshot-img-container">
+                                <img src="https://picsum.photos/seed/odoo-salesforce-12/400/300.jpg" alt="Analytics View" class="screenshot-img">
+                                <div class="screenshot-overlay"></div>
+                            </div>
+                            <div class="p-2 text-center">
                                 <h6 class="text-center">Analytics View</h6>
                             </div>
                         </div>
@@ -1174,135 +1600,6 @@
                     </ul>
                 </div>
 
-                <!-- <style>
-                    /* Scoped CSS for Odoo Compatibility */
-                    .odoo-salesforce-guide {
-                        font-family: 'Open Sans', sans-serif, sans-serif; /* Fallback to system sans-serif */
-                        line-height: 1.6;
-                        color: #333;
-                        max-width: 850px; /* Adjust max-width as needed for Odoo context */
-                        margin: 0 auto; /* Center within its container In Odoo */
-                        padding: 20px;
-                        background-color: #ffffff;
-                        border-radius: 8px;
-                        box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* Subtle shadow */
-                        border: 1px solid #e0e0e0;
-                    }
-
-                    .odoo-salesforce-guide h1,
-                    .odoo-salesforce-guide h2,
-                    .odoo-salesforce-guide h3 {
-                        font-family: 'Poppins', sans-serif, sans-serif; /* Fallback to system sans-serif */
-                        color: #2c3e50;
-                        margin-top: 30px;
-                        margin-bottom: 15px;
-                        position: relative;
-                    }
-
-                    .odoo-salesforce-guide h1 {
-                        font-size: 2.2em;
-                        text-align: center;
-                        color: #3498db;
-                        padding-bottom: 10px;
-                        margin-bottom: 30px;
-                        border-bottom: 2px solid #3498db;
-                    }
-
-                    .odoo-salesforce-guide h2 {
-                        font-size: 1.7em;
-                        color: #3498db;
-                        padding-bottom: 5px;
-                        border-bottom: 1px solid #ddd;
-                        display: flex; /* For icon alignment */
-                        align-items: center;
-                    }
-
-                    .odoo-salesforce-guide h2 i {
-                        margin-right: 10px;
-                        color: #27ae60;
-                        font-size: 1.2em;
-                    }
-
-                    .odoo-salesforce-guide h3 {
-                        font-size: 1.3em;
-                        color: #555;
-                        border-left: 3px solid #27ae60;
-                        padding-left: 8px;
-                        margin-bottom: 10px;
-                    }
-
-                    .odoo-salesforce-guide ul,
-                    .odoo-salesforce-guide ol {
-                        margin-left: 20px;
-                        margin-bottom: 15px;
-                        padding: 0;
-                    }
-
-                    .odoo-salesforce-guide ul li {
-                        list-style: none; /* Remove default bullet */
-                        position: relative;
-                        padding-left: 20px; /* Space for custom bullet */
-                        margin-bottom: 8px;
-                        color: #555;
-                    }
-
-                    .odoo-salesforce-guide ul li::before {
-                        content: "\f058"; /* Font Awesome check-circle icon */
-                        font-family: "Font Awesome 5 Free";
-                        font-weight: 900;
-                        color: #27ae60;
-                        position: absolute;
-                        left: 0;
-                        top: 2px;
-                        font-size: 0.8em;
-                    }
-
-                    .odoo-salesforce-guide ol li {
-                        margin-bottom: 8px;
-                        color: #555;
-                    }
-
-                    .odoo-salesforce-guide ol li strong {
-                        color: #3498db;
-                    }
-
-                    .odoo-salesforce-guide code {
-                        background-color: #f0f0f0;
-                        padding: 2px 5px;
-                        border-radius: 4px;
-                        font-family: 'Courier New', Courier, monospace;
-                        color: #c7254e;
-                        border: 1px solid #e9e9e9;
-                    }
-
-                    .odoo-salesforce-guide strong {
-                        color: #34495e;
-                    }
-
-                    .odoo-salesforce-guide p {
-                        margin-bottom: 10px;
-                    }
-
-                    .odoo-salesforce-guide .note {
-                        background-color: #eaf6ff;
-                        border-left: 5px solid #3498db;
-                        padding: 12px 18px;
-                        margin: 20px 0;
-                        border-radius: 6px;
-                        color: #336699;
-                        box-shadow: 0 1px 5px rgba(0,0,0,0.05);
-                    }
-                    .odoo-salesforce-guide .note strong {
-                        color: #336699;
-                    }
-
-                    .odoo-salesforce-guide hr {
-                        border: none;
-                        border-top: 1px solid #eee;
-                        margin: 25px 0;
-                    }
-                </style> -->
-                
                 <!-- FAQ Tab -->
                 <!-- <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
                     <div class="faq-section">
@@ -1428,86 +1725,95 @@
                 </div> -->
             
                 <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                    <div class="faq-header">
+                        <h1>Odoo - Salesforce Integration Module</h1>
+                        <p>Frequently Asked Questions (FAQs)</p>
+                    </div>
+
                     <div class="faq-section">
-                        <h3 class="mb-4">Frequently Asked Questions</h3>
                         <div class="faq-item">
                             <div class="faq-question">
-                                <span>Odoo - Salesforce Integration Module: Frequently Asked Questions (FAQs)</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <span>This document provides answers to common questions about the Odoo - Salesforce Integration module, covering setup, data synchronization, troubleshooting, and supported features.</span>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
-                                <p>This document provides answers to common questions about the Odoo - Salesforce Integration module, covering setup, data synchronization, troubleshooting, and supported features.</p>
+                                <p>Welcome to the Odoo - Salesforce Integration Module FAQ. This comprehensive guide will help you understand how to set up, configure, and troubleshoot the integration between Odoo and Salesforce.</p>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>1. General & Setup</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
-                                <p>What is the purpose of this module?</p>
+                                <p><strong>What is the purpose of this module?</strong></p>
                                 <p>This module facilitates bi-directional data synchronization and management between Odoo and Salesforce, allowing you to seamlessly manage various business records across both platforms.</p>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>What Salesforce API version does this integration use?</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
-                                <p>The module primarily uses Salesforce API versions `v52.0` (for Quote and Order related operations) and `v39.0`/`v40.0` for other objects like Products and Events.</p>
+                                <p>The module primarily uses Salesforce API versions <code>v52.0</code> (for Quote and Order related operations) and <code>v39.0</code>/<code>v40.0</code> for other objects like Products and Events.</p>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>How do I configure the Salesforce instance in Odoo?</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
                                 <p>You need to set up a Salesforce instance record in Odoo. This involves providing the following Salesforce API credentials:</p>
                                 <ul>
-                                    <li>Consumer Key (Client ID): Obtained from your Salesforce connected app.</li>
-                                    <li>Consumer Secret (Client Secret): Obtained from your Salesforce connected app.</li>
-                                    <li>Authorization URL: Default is `https://login.salesforce.com/services/oauth2/authorize`.</li>
-                                    <li>Authorization Token URL: Default is `https://login.salesforce.com/services/oauth2/token`.</li>
-                                    <li>Redirect URL: Default is `http://localhost:8069/get_salesforce_token` (ensure this matches your Salesforce connected app's callback URL and is accessible).</li>
+                                    <li><strong>Consumer Key (Client ID):</strong> Obtained from your Salesforce connected app.</li>
+                                    <li><strong>Consumer Secret (Client Secret):</strong> Obtained from your Salesforce connected app.</li>
+                                    <li><strong>Authorization URL:</strong> Default is <code>https://login.salesforce.com/services/oauth2/authorize</code>.</li>
+                                    <li><strong>Authorization Token URL:</strong> Default is <code>https://login.salesforce.com/services/oauth2/token</code>.</li>
+                                    <li><strong>Redirect URL:</strong> Default is <code>http://localhost:8069/get_salesforce_token</code> (ensure this matches your Salesforce connected app's callback URL and is accessible).</li>
                                 </ul>
                                 <p>You will also need to authorize the connection to obtain the access token.</p>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>What happens if there is no default Salesforce instance configured?</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
                                 <p>Many synchronization and export operations will fail with an error message like "There is no default Salesforce instance" if a default instance is not configured in Odoo.</p>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>2. Data Synchronization</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
-                                <p>2.1. Supported Objects & Sync Direction</p>
-                                <p>Which Odoo records can be synchronized with Salesforce?</p>
+                                <p class="section-title">2.1. Supported Objects & Sync Direction</p>
+                                <p><strong>Which Odoo records can be synchronized with Salesforce?</strong></p>
                                 <p>The module supports synchronization for the following Odoo objects with their corresponding Salesforce counterparts:</p>
                                 <ul>
-                                    <li>Accounts (`res.partner` where `is_company=True`)</li>
-                                    <li>Contacts (`res.partner` where `is_company=False`)</li>
-                                    <li>Products (`product.product`)</li>
-                                    <li>Product Templates (`product.template`)</li>
-                                    <li>Sale Quotations (`sale.order` in draft/sent state)</li>
-                                    <li>Sale Orders (`sale.order`)</li>
-                                    <li>Leads (`crm.lead` of type 'lead')</li>
-                                    <li>Opportunities (`crm.lead` of type 'opportunity')</li>
-                                    <li>Contracts (`sf.contract`)</li>
-                                    <li>Events (`calendar.event`)</li>
-                                    <li>Activities (Tasks) (`mail.activity`)</li>
-                                    <li>Attachments (`ir.attachment`)</li>
+                                    <li>Accounts (<code>res.partner</code> where <code>is_company=True</code>)</li>
+                                    <li>Contacts (<code>res.partner</code> where <code>is_company=False</code>)</li>
+                                    <li>Products (<code>product.product</code>)</li>
+                                    <li>Product Templates (<code>product.template</code>)</li>
+                                    <li>Sale Quotations (<code>sale.order</code> in draft/sent state)</li>
+                                    <li>Sale Orders (<code>sale.order</code>)</li>
+                                    <li>Leads (<code>crm.lead</code> of type 'lead')</li>
+                                    <li>Opportunities (<code>crm.lead</code> of type 'opportunity')</li>
+                                    <li>Contracts (<code>sf.contract</code>)</li>
+                                    <li>Events (<code>calendar.event</code>)</li>
+                                    <li>Activities (Tasks) (<code>mail.activity</code>)</li>
+                                    <li>Attachments (<code>ir.attachment</code>)</li>
                                 </ul>
-                                <p>Is the synchronization bi-directional (Odoo to Salesforce and Salesforce to Odoo)?</p>
+                                <p><strong>Is the synchronization bi-directional (Odoo to Salesforce and Salesforce to Odoo)?</strong></p>
                                 <p>Based on the code, the module supports:</p>
                                 <ul>
                                     <li>Export from Odoo to Salesforce: For Accounts, Contacts, Products, Product Templates, Sale Quotations, Sale Orders, Leads, Opportunities, Contracts, Events, and Activities.</li>
@@ -1515,71 +1821,104 @@
                                 </ul>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>2.2. Synchronization Triggers & Schedulers</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
-                                <p>How is data synchronization initiated?</p>
+                                <p><strong>How is data synchronization initiated?</strong></p>
                                 <p>Synchronization can be initiated in two ways:</p>
                                 <ul>
                                     <li>Manual Export: Users can manually trigger the export of individual records (e.g., Partners, Products, Leads, Opportunities, Quotes, Orders, Contracts, Events, Activities) from their respective Odoo forms.</li>
-                                    <li>Scheduled Cron Jobs: The module includes scheduled actions (cron jobs) to automatically import and export data for various objects at predefined intervals (e.g., `_scheduler_import_sf_accounts`, `_scheduler_export_products_to_sf`).</li>
+                                    <li>Scheduled Cron Jobs: The module includes scheduled actions (cron jobs) to automatically import and export data for various objects at predefined intervals (e.g., <code>_scheduler_import_sf_accounts</code>, <code>_scheduler_export_products_to_sf</code>).</li>
                                 </ul>
-                                <p>How does the module handle updates to records in Odoo?</p>
-                                <p>Records in Odoo have an `x_is_updated` field. When certain fields are modified (e.g., `x_last_modified_on` for partners), this flag is set to `True`, indicating the record needs to be updated in Salesforce during the next export sync.</p>
-                                <p>How are deleted records handled?</p>
-                                <p>The `unlink` method for `sale.order` (Quotes/Sale Orders) and `sale.order.line` is extended to attempt deletion of corresponding records in Salesforce if they were previously exported (i.e., have a Salesforce ID). This helps maintain data consistency.</p>
+                                <p><strong>How does the module handle updates to records in Odoo?</strong></p>
+                                <p>Records in Odoo have an <code>x_is_updated</code> field. When certain fields are modified (e.g., <code>x_last_modified_on</code> for partners), this flag is set to <code>True</code>, indicating the record needs to be updated in Salesforce during the next export sync.</p>
+                                <p><strong>How are deleted records handled?</strong></p>
+                                <p>The <code>unlink</code> method for <code>sale.order</code> (Quotes/Sale Orders) and <code>sale.order.line</code> is extended to attempt deletion of corresponding records in Salesforce if they were previously exported (i.e., have a Salesforce ID). This helps maintain data consistency.</p>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>2.3. Specific Object Sync Details</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
-                                <p>How are Products and Product Templates synchronized?</p>
-                                <p>Product Templates and their variants can be exported to Salesforce as `Product2` records. The integration also handles the creation and updating of `PricebookEntry` records in Salesforce for these products, linking them to a standard price book.</p>
-                                <p>What happens when a Sale Order's contract changes?</p>
-                                <p>If the `contract_id` on a Sale Order is changed, the module validates that the Odoo order date is not earlier than the contract's start date, raising a `UserError` if it is.</p>
-                                <p>How are attachments synchronized?</p>
-                                <p>The module includes logic to export attachments from Odoo to Salesforce. It uses `ir.attachment` records and tracks the Salesforce `ContentDocumentId` to prevent duplicate uploads.</p>
-                                <p>How are addresses synchronized for Partners/Contacts?</p>
-                                <p>When partners (companies or contacts) are exported, their main addresses are synchronized. Additionally, separate delivery addresses linked to contacts (child `res.partner` records with `type='delivery'`) are also created or updated in Salesforce.</p>
-                                <p>Can I export Leads and Opportunities to Salesforce?</p>
-                                <p>Yes, `crm.lead` records in Odoo can be exported to Salesforce as either Leads or Opportunities, depending on their type in Odoo.</p>
+                                <p><strong>How are Products and Product Templates synchronized?</strong></p>
+                                <p>Product Templates and their variants can be exported to Salesforce as <code>Product2</code> records. The integration also handles the creation and updating of <code>PricebookEntry</code> records in Salesforce for these products, linking them to a standard price book.</p>
+                                <p><strong>What happens when a Sale Order's contract changes?</strong></p>
+                                <p>If the <code>contract_id</code> on a Sale Order is changed, the module validates that the Odoo order date is not earlier than the contract's start date, raising a <code>UserError</code> if it is.</p>
+                                <p><strong>How are attachments synchronized?</strong></p>
+                                <p>The module includes logic to export attachments from Odoo to Salesforce. It uses <code>ir.attachment</code> records and tracks the Salesforce <code>ContentDocumentId</code> to prevent duplicate uploads.</p>
+                                <p><strong>How are addresses synchronized for Partners/Contacts?</strong></p>
+                                <p>When partners (companies or contacts) are exported, their main addresses are synchronized. Additionally, separate delivery addresses linked to contacts (child <code>res.partner</code> records with <code>type='delivery'</code>) are also created or updated in Salesforce.</p>
+                                <p><strong>Can I export Leads and Opportunities to Salesforce?</strong></p>
+                                <p>Yes, <code>crm.lead</code> records in Odoo can be exported to Salesforce as either Leads or Opportunities, depending on their type in Odoo.</p>
                             </div>
                         </div>
+
                         <div class="faq-item">
                             <div class="faq-question">
                                 <span>3. Troubleshooting & Common Issues</span>
-                                <i class="fas fa-chevron-down"></i>
+                                <i class="fas fa-chevron-down icon"></i>
                             </div>
                             <div class="faq-answer">
-                                <p>What should I do if a record fails to export to Salesforce?</p>
-                                <p>The module logs errors to Odoo's log file (e.g., `_logger.error`). Check the Odoo server logs for detailed error messages, as these often include the Salesforce response which can pinpoint the exact issue (e.g., `FIELD_INTEGRITY_EXCEPTION`, missing required fields, permissions issues).</p>
-                                <p>I'm getting "There is no Salesforce instance" error. What's wrong?</p>
+                                <p><strong>What should I do if a record fails to export to Salesforce?</strong></p>
+                                <p>The module logs errors to Odoo's log file (e.g., <code>_logger.error</code>). Check the Odoo server logs for detailed error messages, as these often include the Salesforce response which can pinpoint the exact issue (e.g., <code>FIELD_INTEGRITY_EXCEPTION</code>, missing required fields, permissions issues).</p>
+                                
+                                <div class="error-message">
+                                    Error logs will contain specific Salesforce API responses that help identify the root cause of synchronization failures.
+                                </div>
+                                
+                                <p><strong>I'm getting "There is no Salesforce instance" error. What's wrong?</strong></p>
                                 <p>This error indicates that no Salesforce instance has been configured or that the configured instance is not set as the default one for your company. Go to the Salesforce configuration in Odoo and ensure an instance is properly set up and authorized.</p>
-                                <p>Why might a `ContentDocumentLink` fail when exporting attachments?</p>
+                                
+                                <div class="warning-message">
+                                    Always verify that your Salesforce instance is configured and set as the default before attempting any synchronization.
+                                </div>
+                                
+                                <p><strong>Why might a <code>ContentDocumentLink</code> fail when exporting attachments?</strong></p>
                                 <p>Even if the attachment (ContentVersion) is created, linking it to a record can fail due to:</p>
                                 <ul>
                                     <li>Insufficient permissions for the Salesforce integration user on the target record (e.g., Quote, Sale Order).</li>
                                     <li>The target record itself is in a state that prevents linking (e.g., archived, read-only).</li>
-                                    <li>Incorrect `ShareType` or `Visibility` settings in the `ContentDocumentLink` payload (less common for a "bad ID" error, but worth checking).</li>
+                                    <li>Incorrect <code>ShareType</code> or <code>Visibility</code> settings in the <code>ContentDocumentLink</code> payload (less common for a "bad ID" error, but worth checking).</li>
                                 </ul>
                                 <p>Always check Salesforce debug logs for the precise error.</p>
-                                <p>I encountered "Please Select 1 record to Export" error.</p>
-                                <p>This `UserError` is raised by the module when you try to manually export multiple records at once for certain objects (e.g., Products, Events) which are designed for single-record manual export. Select only one record at a time for manual export. Scheduled cron jobs will process multiple records automatically.</p>
-                                <p>Why are some fields not synchronizing correctly?</p>
+                                
+                                <p><strong>I encountered "Please Select 1 record to Export" error.</strong></p>
+                                <p>This <code>UserError</code> is raised by the module when you try to manually export multiple records at once for certain objects (e.g., Products, Events) which are designed for single-record manual export. Select only one record at a time for manual export. Scheduled cron jobs will process multiple records automatically.</p>
+                                
+                                <div class="success-message">
+                                    Scheduled cron jobs can handle bulk exports, while manual exports are limited to single records for certain object types.
+                                </div>
+                                
+                                <p><strong>Why are some fields not synchronizing correctly?</strong></p>
                                 <p>Possible reasons include:</p>
                                 <ul>
-                                    <li>The field mapping in the integration code might be incorrect or missing.</li>
+                                    <>The field mapping in the integration code might be incorrect or missing.</li>
                                     <li>Salesforce field-level security or validation rules might be preventing the update.</li>
                                     <li>Data type mismatch between Odoo and Salesforce fields.</li>
-                                    <li>The Odoo record's `x_is_updated` flag is not correctly set.</li>
+                                    <li>The Odoo record's <code>x_is_updated</code> flag is not correctly set.</li>
                                 </ul>
-                                <p>Review the specific `sendDataToSf` or `create/update_sf_dict` methods in the relevant Python file and check Salesforce validation rules/permissions.</p>
+                                <p>Review the specific <code>sendDataToSf</code> or <code>create/update_sf_dict</code> methods in the relevant Python file and check Salesforce validation rules/permissions.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span>Module Support & SLA</span>
+                                <i class="fas fa-chevron-down icon"></i>
+                                <!-- <h5 class="m-0">
+                                    <i class="fa fa-info-circle mr-2" style="color:#681c56;"></i> Module Support & SLA
+                                </h5> -->
+                            </div>
+                            <div class="faq-answer">
+                                For any support related to this Odoo module, please contact us at <b>apps@odooerp.ae</b>
+                                <br>
+                                Our standard <b>response time (SLA)</b> for support queries is between <b>12 to 48 hours.</b>
                             </div>
                         </div>
                     </div>
@@ -1588,39 +1927,26 @@
         </div>
     </section>
 
-    <!-- Contact Buttons Section -->
-    <section class="contact-section">
-        <h3 class="mb-4">Get in Touch</h3>
-        <div>
-            <a href="mailto:sales@odoo-salesforce.com" class="contact-button email-button">
-                <i class="fas fa-envelope"></i>
-                Email Us
+    <section class="oe_container oe_dark bg-light pt-5 pb-5">
+        <div class="gap-3 align-items-center text-center">
+            <a href="https://wa.me/+971542898664?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" class="btn btn-primary" style="background-color:#7F4994; border:none"><i class="fa fa-brands fa-whatsapp"></i>+971 54 289 8664</a>
+            <a href="mailto:apps@odooerp.ae" class="btn btn-outline-primary" style="background-color:#1C9CC7; border-color:#1C9CC7; color:#ffffff"><i class="fa fa-solid fa-envelope"></i> Email Us</a>
+            <a href="" target="_blank" class="btn btn-outline-primary" style="background-color:#28a745; border-color:#28a745; color:#ffffff;">
+                <i class="fa fa-play-circle"></i> Watch Video Tutorial
             </a>
-            <a href="https://wa.me/1234567890" class="contact-button whatsapp-button">
-                <i class="fab fa-whatsapp"></i>
-                WhatsApp
-            </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="contact-button video-button" target="_blank">
-                <i class="fas fa-video"></i>
-                Video Tutorial
-            </a>
+                
+        </div>
+        
+        <div class="oe_row oe_spaced text-center">
+            <img class="img-fluid" src="footer_banner/Your One - Stop - Shop - Partner.png"/>
+        </div>
+
+        <div class="oe_row oe_spaced text-center">
+            <img class="img-fluid" src="footer_banner/Support 1.png"/>
         </div>
     </section>
 
-    <!-- Banner Images Section -->
-    <section class="banner-section">
-        <div class="banner-image">
-            <img src="https://picsum.photos/seed/odoo-salesforce-banner-1/600/300.jpg" alt="Odoo-Salesforce Integration Banner 1">
-        </div>
-        <div class="banner-image">
-            <img src="https://picsum.photos/seed/odoo-salesforce-banner-2/600/300.jpg" alt="Odoo-Salesforce Integration Banner 2">
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-4 text-center text-muted">
-        <p>© 2023 Odoo-Salesforce Integration. All rights reserved.</p>
-    </footer>
+    
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1659,5 +1985,76 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('.icon');
+                    
+                    // Toggle active class on the question
+                    this.classList.toggle('active');
+                    
+                    // Toggle active class on the answer
+                    answer.classList.toggle('active');
+                    
+                    // Close other answers if this one is opened
+                    if (this.classList.contains('active')) {
+                        faqQuestions.forEach(otherQuestion => {
+                            if (otherQuestion !== this) {
+                                otherQuestion.classList.remove('active');
+                                otherQuestion.nextElementSibling.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+    // Modal functionality for enlarged images
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <span class="close">&times;</span>
+            <div class="modal-content">
+                <img class="modal-img" src="" alt="">
+                <div class="modal-caption"></div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+
+        const modalImg = modal.querySelector('.modal-img');
+        const modalCaption = modal.querySelector('.modal-caption');
+        const closeBtn = modal.querySelector('.close');
+        const screenshotItems = document.querySelectorAll('.screenshot-item');
+        
+        // Open modal when clicking on a screenshot
+        screenshotItems.forEach(item => {
+            const img = item.querySelector('.screenshot-img');
+            const title = item.querySelector('h6').textContent;
+            
+            item.querySelector('.screenshot-img-container').addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = img.src;
+                modalCaption.textContent = title;
+            });
+        });
+        
+        // Close modal when clicking on close button or outside
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>
 </body>
 </html>
