@@ -1,10 +1,10 @@
 {
     "name": "Odoo-SalesForce Connector",
     "author": "OdooERP.ae",
-    "version": "17.0",
+    "version": "17.0.1.0.0",
     "category": "Services",
     "website": "https://odooerp.ae",
-    "summary": "2 way SalesForce connector Odoo SalesForce Connector odoo salesforce integration crm app",
+    "summary": "Two-Way Salesforce Connector - Integrate Odoo with Salesforce CRM Effortlessly",
     "depends": ["sale_management", "product", "crm"],
     "description": """
 2-way SalesForce Connector for Odoo
@@ -34,7 +34,7 @@ crm app
         "views/salesforce_instance_views.xml",
         "views/ir_attachment.xml",
     ],
-    "images": ["static/description/icon.png"],
+    "images": ["static/description/banner.gif"],
     "live_test_url": "",
     "currency": "USD",
     "license": "AGPL-3",
