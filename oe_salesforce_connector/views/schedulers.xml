@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="cron_sf_authentication_from_salesforce_instance" model="ir.cron">
+        <field name="name">Salesforce Authentication</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_salesforce_login_aunthetication()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="True"/>
+    </record>
+
+
+    <record id="cron_sf_import_accounts" model="ir.cron">
+        <field name="name">Salesforce Import Accounts</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_accounts()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_contacts" model="ir.cron">
+        <field name="name">Salesforce Import Contacts</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_contacts()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_products" model="ir.cron">
+        <field name="name">Salesforce Import Products</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_products()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_quotes" model="ir.cron">
+        <field name="name">Salesforce Import Quotes</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_quotes()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_orders" model="ir.cron">
+        <field name="name">Salesforce Import Orders</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_orders()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_leads" model="ir.cron">
+        <field name="name">Salesforce Import Leads</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_leads()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_opportunity" model="ir.cron">
+        <field name="name">Salesforce Import Opportunity</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_opportunity()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_contracts" model="ir.cron">
+        <field name="name">Salesforce Import Contracts</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_contract()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_events" model="ir.cron">
+        <field name="name">Salesforce Import Events</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_event()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_import_activities" model="ir.cron">
+        <field name="name">Salesforce Import Activities</field>
+        <field name="model_id" ref="model_salesforce_instance"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_import_sf_activity()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+
+    <record id="crom_export_companies" model="ir.cron">
+        <field name="name">Salesforce -Export Companies to Salesforce</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_companies_to_sf()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="crom_export_individuals" model="ir.cron">
+        <field name="name">Salesforce -Export Contacts to Salesforce</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_contacts_to_sf()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+
+    <record id="crom_export_products" model="ir.cron">
+        <field name="name">Salesforce -Export Products to Salesforce</field>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_products_to_sf()</field>
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="crom_export_leads" model="ir.cron">
+        <field name="name">Salesforce -Export Leads to Salesforce</field>
+        <field name="model_id" ref="model_crm_lead"/>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_leads_to_sf()</field>
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="crom_export_leads_opportunity" model="ir.cron">
+        <field name="name">Salesforce -Export Opportunity to Salesforce</field>
+        <field name="model_id" ref="model_crm_lead"/>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_opportunity_to_sf()</field>
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_export_contracts" model="ir.cron">
+        <field name="name">Salesforce Export Contracts</field>
+        <field name="model_id" ref="model_sf_contract"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_contracts_to_sf()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_export_events" model="ir.cron">
+        <field name="name">Salesforce Export Events</field>
+        <field name="model_id" ref="model_calendar_event"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_event_to_sf()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_export_activities" model="ir.cron">
+        <field name="name">Salesforce Export Activities</field>
+        <field name="model_id" ref="model_mail_activity"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_activity_to_sf()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_export_sale_order" model="ir.cron">
+        <field name="name">Salesforce Export SaleOrder</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_orders_to_sf()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="cron_sf_export_quotes" model="ir.cron">
+        <field name="name">Salesforce Export Quotations</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model._scheduler_export_quotes_to_sf()</field>
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+<!--        <field name="numbercall">-1</field>-->
+<!--        <field name="doall" eval="False"/>-->
+        <field name="active" eval="False"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_shipping_handling" model="product.product">
+        <field name="name">Shipping and Handling</field>
+        <field name="type">service</field>  <!-- Service product (no stock tracking) -->
+        <field name="categ_id" ref="product.product_category_all"/>  <!-- Default product category -->
+        <field name="list_price">0.00</field>  <!-- Default price -->
+        <field name="standard_price">0.00</field>  <!-- Cost price -->
+        <field name="sale_ok">True</field>  <!-- Available for sale -->
+        <field name="purchase_ok">False</field>  <!-- Not purchasable -->
+        <field name="default_code">SHIP-HANDLING</field>  <!-- Internal reference -->
+        <field name="invoice_policy">order</field>  <!-- Invoice on order -->
+        <field name="company_id" eval="False"/>  <!-- Apply to all companies if multi-company is enabled -->
+    </record>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="export_sf_contract_to_salesforce" model="ir.actions.server">
+        <field name="name">Export Contract to Salesforce</field>
+        <field name="model_id" ref="model_sf_contract"/>
+        <field name="binding_model_id" ref="model_sf_contract"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            records.exportContract_to_sf()
+        </field>
+    </record>
+
+    <record id="contract_form" model="ir.ui.view">
+        <field name="name">contract.form</field>
+        <field name="model">sf.contract</field>
+        <field name="arch" type="xml">
+            <form string="Contract Form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='name'/>
+                            <field name="parent_id" required="1"/>
+                            <field name="contract_start_date" required="1"/>
+                        </group>
+                        <group>
+                            <field name="contacr_term_month" required="1"/>
+                            <field name="state" required="1"/>
+                            <field name="x_salesforce_id" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="contract_tree" model="ir.ui.view">
+        <field name="name">contract.tree</field>
+        <field name="model">sf.contract</field>
+        <field name="arch" type="xml">
+            <list string="Contract Tree">
+                <field name='name'/>
+                <field name="parent_id"/>
+                <field name="contract_start_date"/>
+                <field name="contacr_term_month" required="1"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="contract_action" model="ir.actions.act_window">
+        <field name="name">Contract</field>
+        <field name="res_model">sf.contract</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_sf_contract"
+              action="contract_action"
+              name="Contract"
+              parent="sale.sale_menu_root"
+              sequence="23"/>
+</odoo>
