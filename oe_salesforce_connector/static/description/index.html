@@ -661,50 +661,6 @@
             gap: 15px;
         }
     }
-    .gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-  .gallery-item {
-    width: 45%;
-    cursor: pointer;
-  }
-  .gallery-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-  .lightbox {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    padding-top: 60px;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.9);
-    text-align: center;
-  }
-  .lightbox img {
-    max-width: 90%;
-    max-height: 80%;
-    margin-top: 30px;
-  }
-  .lightbox:target {
-    display: block;
-  }
-  .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #fff;
-    font-size: 30px;
-    text-decoration: none;
-    font-weight: bold;
-  }
     </style>
 </head>
 <body>
@@ -743,276 +699,170 @@
                 
                 <!-- Screenshots Tab -->
                 <div class="tab-pane fade" id="screenshots" role="tabpanel" aria-labelledby="screenshots-tab">
-                    <!-- Screenshots Section -->
-                    <p class="text-center mb-5" style="font-weight: bold; color: #681c56;">API Configuration</p>
-                    <div class="gallery-grid">
-                        <a href="#img1" class="gallery-item">
-                            <img src="screenshots/configuration/c1.png" alt="Screenshot 1" />
-                        </a>
-                        <a href="#img2" class="gallery-item">
-                            <img src="screenshots/configuration/c2.png" alt="Screenshot 2" />
-                        </a>
-                        <a href="#img3" class="gallery-item">
-                            <img src="screenshots/configuration/c3.png" alt="Screenshot 3" />
-                        </a>
-                        <a href="#img4" class="gallery-item">
-                            <img src="screenshots/configuration/c4.png" alt="Screenshot 4" />
-                        </a>
-                        <a href="#img5" class="gallery-item">
-                            <img src="screenshots/configuration/c5.png" alt="Screenshot 5" />
-                        </a>
-                        <a href="#img6" class="gallery-item">
-                            <img src="screenshots/configuration/c6.png" alt="Screenshot 6" />
-                        </a>
-                        <a href="#img7" class="gallery-item">
-                            <img src="screenshots/configuration/c7.png" alt="Screenshot 7" />
-                        </a>
+                    <div class="oe_row oe_spaced text-center">
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">API Configuration</h3>
+                        <div class="row w-100 mx-auto justify-content-center">
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/configuration/c1.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/configuration/c2.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/configuration/c3.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/configuration/c4.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/configuration/c5.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/configuration/c6.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/configuration/c7.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">Import-Export Account</h3>
+                        <div class="row w-100 mx-auto justify-content-center">
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/account/a1.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/account/a2.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">Import-Export Contact</h3>
+                        <div class="row w-100 mx-auto justify-content-center">
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/contact/con1.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/contact/con2.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/contact/con3.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">Import-Export Event</h3>
+                        <div class="row w-100 mx-auto justify-content-center">
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/event/1.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/event/2.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/event/3.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">Import-Export Opportunity</h3>
+                        <div class="row w-100 mx-auto justify-content-center">
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/opportunity/1.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/opportunity/2.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/opportunity/3.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">Import-Export Product</h3>
+                        <div class="row w-100 mx-auto justify-content-center">
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/product/1.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/product/2.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/product/3.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/product/4.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="oe_slogan text-center text-875A7B display-4 font-weight-bold mb-5" style="font-weight: bold; color: #681c56;">Import-Export Quotation</h3>
+                        <div class="row w-100 mx-auto justify-content-center">
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/sales/1.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/sales/2.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/sales/3.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/sales/4.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4 d-flex">
+                                <div class="oe_screenshot card h-100 shadow-sm d-flex flex-column">
+                                    <img class="card-img-top" src="screenshots/sales/5.png" alt="Screenshot 1"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Lightboxes -->
-                    <div id="img1" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/configuration/c1.png" alt="Screenshot 1 Enlarged" />
-                    </div>
-
-                    <div id="img2" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/configuration/c2.png" alt="Screenshot 2 Enlarged" />
-                    </div>
-
-                    <div id="img3" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/configuration/c3.png" alt="Screenshot 3 Enlarged" />
-                    </div>
-
-                    <div id="img4" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/configuration/c4.png" alt="Screenshot 4 Enlarged" />
-                    </div>
-
-                    <div id="img5" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/configuration/c5.png" alt="Screenshot 5 Enlarged" />
-                    </div>
-
-                    <div id="img6" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/configuration/c6.png" alt="Screenshot 6 Enlarged" />
-                    </div>
-
-                    <div id="img7" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/configuration/c7.png" alt="Screenshot 7 Enlarged" />
-                    </div>
-
-                    <br/>
-                    
-                    <p class="text-center mb-5" style="font-weight: bold; color: #681c56;">Import-Export Account</p>
-                    <div class="gallery-grid">
-                        <a href="#aimg1" class="gallery-item">
-                            <img src="screenshots/account/a1.png" alt="Screenshot 1" />
-                        </a>
-                        <a href="#aimg2" class="gallery-item">
-                            <img src="screenshots/account/a2.png" alt="Screenshot 2" />
-                        </a>
-                        
-                    </div>
-
-                    <!-- Lightboxes -->
-                    <div id="aimg1" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/account/a1.png" alt="Screenshot 1 Enlarged" />
-                    </div>
-
-                    <div id="aimg2" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/account/a2.png" alt="Screenshot 2 Enlarged" />
-                    </div>
-
-                    <br/>
-
-                    <p class="text-center mb-5" style="font-weight: bold; color: #681c56;">Import-Export Contact</p>
-                    <div class="gallery-grid">
-                        <a href="#conimg1" class="gallery-item">
-                            <img src="screenshots/contact/con1.png" alt="Screenshot 1" />
-                        </a>
-                        <a href="#conimg2" class="gallery-item">
-                            <img src="screenshots/contact/con2.png" alt="Screenshot 2" />
-                        </a>
-                        <a href="#conimg3" class="gallery-item">
-                            <img src="screenshots/contact/con3.png" alt="Screenshot 2" />
-                        </a>
-                        
-                    </div>
-
-                    <!-- Lightboxes -->
-                    <div id="conimg1" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/contact/con1.png" alt="Screenshot 1 Enlarged" />
-                    </div>
-
-                    <div id="conimg2" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/contact/con2.png" alt="Screenshot 2 Enlarged" />
-                    </div>
-
-                    <div id="conimg3" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/contact/con3.png" alt="Screenshot 3 Enlarged" />
-                    </div>
-
-                    <br/>
-
-                    <p class="text-center mb-5" style="font-weight: bold; color: #681c56;">Import-Export Event</p>
-                    <div class="gallery-grid">
-                        <a href="#ev1" class="gallery-item">
-                            <img src="screenshots/event/1.png" alt="Screenshot 1" />
-                        </a>
-                        <a href="#ev2" class="gallery-item">
-                            <img src="screenshots/event/2.png" alt="Screenshot 2" />
-                        </a>
-                        <a href="#ev3" class="gallery-item">
-                            <img src="screenshots/event/3.png" alt="Screenshot 2" />
-                        </a>
-                        
-                    </div>
-
-                    <!-- Lightboxes -->
-                    <div id="ev1" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/event/1.png" alt="Screenshot 1 Enlarged" />
-                    </div>
-
-                    <div id="ev2" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/event/2.png" alt="Screenshot 2 Enlarged" />
-                    </div>
-
-                    <div id="ev3" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/event/3.png" alt="Screenshot 3 Enlarged" />
-                    </div>
-
-                    <br/>
-
-                    <p class="text-center mb-5" style="font-weight: bold; color: #681c56;">Import-Export Opportunity</p>
-                    <div class="gallery-grid">
-                        <a href="#op1" class="gallery-item">
-                            <img src="screenshots/opportunity/1.png" alt="Screenshot 1" />
-                        </a>
-                        <a href="#op2" class="gallery-item">
-                            <img src="screenshots/opportunity/2.png" alt="Screenshot 2" />
-                        </a>
-                        <a href="#op3" class="gallery-item">
-                            <img src="screenshots/opportunity/3.png" alt="Screenshot 2" />
-                        </a>
-                        
-                    </div>
-
-                    <!-- Lightboxes -->
-                    <div id="op1" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/opportunity/1.png" alt="Screenshot 1 Enlarged" />
-                    </div>
-
-                    <div id="op2" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/opportunity/2.png" alt="Screenshot 2 Enlarged" />
-                    </div>
-
-                    <div id="op3" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/opportunity/3.png" alt="Screenshot 3 Enlarged" />
-                    </div>
-
-                    <br/>
-
-                    <p class="text-center mb-5" style="font-weight: bold; color: #681c56;">Import-Export Product</p>
-                    <div class="gallery-grid">
-                        <a href="#pr1" class="gallery-item">
-                            <img src="screenshots/product/1.png" alt="Screenshot 1" />
-                        </a>
-                        <a href="#pr2" class="gallery-item">
-                            <img src="screenshots/product/2.png" alt="Screenshot 2" />
-                        </a>
-                        <a href="#pr3" class="gallery-item">
-                            <img src="screenshots/product/3.png" alt="Screenshot 3" />
-                        </a>
-                        <a href="#pr4" class="gallery-item">
-                            <img src="screenshots/product/4.png" alt="Screenshot 4" />
-                        </a>
-                        
-                    </div>
-
-                    <!-- Lightboxes -->
-                    <div id="pr1" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/product/1.png" alt="Screenshot 1 Enlarged" />
-                    </div>
-
-                    <div id="pr2" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/product/2.png" alt="Screenshot 2 Enlarged" />
-                    </div>
-
-                    <div id="pr3" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/product/3.png" alt="Screenshot 3 Enlarged" />
-                    </div>
-
-                    <div id="pr4" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/product/4.png" alt="Screenshot 4 Enlarged" />
-                    </div>
-
-                    <br/>
-
-                    <p class="text-center mb-5" style="font-weight: bold; color: #681c56;">Import-Export Quotation</p>
-                    <div class="gallery-grid">
-                        <a href="#sa1" class="gallery-item">
-                            <img src="screenshots/product/1.png" alt="Screenshot 1" />
-                        </a>
-                        <a href="#sa2" class="gallery-item">
-                            <img src="screenshots/sales/2.png" alt="Screenshot 2" />
-                        </a>
-                        <a href="#sa3" class="gallery-item">
-                            <img src="screenshots/sales/3.png" alt="Screenshot 3" />
-                        </a>
-                        <a href="#sa4" class="gallery-item">
-                            <img src="screenshots/sales/4.png" alt="Screenshot 4" />
-                        </a>
-                        <a href="#sa5" class="gallery-item">
-                            <img src="screenshots/sales/5.png" alt="Screenshot 5" />
-                        </a>
-                        
-                    </div>
-
-                    <!-- Lightboxes -->
-                    <div id="sa1" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/sales/1.png" alt="Screenshot 1 Enlarged" />
-                    </div>
-
-                    <div id="sa2" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/sales/2.png" alt="Screenshot 2 Enlarged" />
-                    </div>
-
-                    <div id="sa3" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/sales/3.png" alt="Screenshot 3 Enlarged" />
-                    </div>
-
-                    <div id="sa4" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/sales/4.png" alt="Screenshot 4 Enlarged" />
-                    </div>
-
-                    <div id="sa5" class="lightbox">
-                        <a href="#" class="lightbox-close">&times;</a>
-                        <img src="screenshots/sales/5.png" alt="Screenshot 5 Enlarged" />
-                    </div>
-
                 </div>
                 
                 <!-- User Guide Tab -->
