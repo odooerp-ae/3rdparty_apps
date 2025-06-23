@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.tabby.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25"/>
+        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div id="website_settings" position="after">
+                <h2>Payment Tabby</h2>
+                <div class="row mt16 o_settings_container" id="payment_tabby_settings">
+                    <div class="col-12 col-lg-offset-6 col-lg-6 o_setting_box" id="product_widget_setting">
+                        <div class="o_setting_left_pane">
+                            <field name="tabby_product_widget"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="tabby_product_widget"/>
+                            <div class="text-muted">
+                                Enable/disable the product widget configuration
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt16 o_settings_container"
+                     attrs="{'invisible': [('tabby_product_widget', '=', False)]}"
+                     id="payment_tabby_settings">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="tabby_data_installment_maximum_amount"/>
+                            <div class="text-muted">
+                                The maximum amount will be accepted pay by installment.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="tabby_data_installment_maximum_amount" class="oe_inline"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="tabby_data_installment_minimum_amount"/>
+                            <div class="text-muted">
+                                The minimum amount will be accepted pay by installment.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="tabby_data_installment_minimum_amount" class="oe_inline"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container" id="payment_tabby_settings">
+                    <div class="col-12 col-lg-6 o_setting_box"
+                         attrs="{'invisible': [('tabby_product_widget', '=', False)]}">
+                        <div class="o_setting_right_pane">
+                            <label for="tabby_data_installment_available_amount"/>
+                            <div class="text-muted">
+                                The available amount will be shown in popup content.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field name="tabby_data_installment_available_amount" class="oe_inline"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box"
+                         attrs="{'invisible': [('tabby_product_widget', '=', False)]}">
+                        <div class="o_setting_right_pane">
+                            <label string="No of Installments" for="tabby_data_number_of_installments"/>
+                            <div class="text-muted">
+                                Select No of Installments
+                            </div>
+                            <div class="row mt16">
+                                <label class="col-lg-4 o_light_label " string="No of Installments"
+                                       for="tabby_data_number_of_installments"/>
+                                <field class="col-lg-4" style="margin-left: 60px;"
+                                       name="tabby_data_number_of_installments"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>     
