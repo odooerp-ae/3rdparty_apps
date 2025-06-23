@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="payment_provider_tabby" model="payment.provider">
+    	<field name="name">Tabby Payment</field>
+        <field name="image_128" type="base64" file="ot_payment_tabby/static/description/icon.jpg"/>
+<!--         <field name="module_id" ref="base.module_payment_tabby"/> -->
+        <field name="payment_method_ids"
+               eval="[(6, 0, [
+                   ref('payment.payment_method_card')
+               ])]"/>
+        <field name="code">tabby_payment</field>
+        <field name="redirect_form_view_id" ref="redirect_form" />
+    </record>
+    
+    <record id="account_payment_method_tabby_in" model="account.payment.method">
+        <field name="name">Tabby Payment</field>
+        <field name="code">tabby_payment</field>
+        <field name="payment_type">inbound</field>
+    </record>
+    
+</odoo>

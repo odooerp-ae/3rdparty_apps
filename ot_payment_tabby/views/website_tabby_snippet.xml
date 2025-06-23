@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+        <template id="product" inherit_id="website_sale.product">
+            <xpath expr="//div[@id='o_product_terms_and_share']" position="before">
+                <div id="tabby"></div>
+            </xpath>
+        </template>
+    
+</odoo>
