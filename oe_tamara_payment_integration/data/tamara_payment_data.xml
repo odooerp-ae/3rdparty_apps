@@ -1,0 +1,38 @@
+<odoo noupdate="1">
+    <record id="payment_tamara_connect" model="payment.method">
+        <field name="name">Tamara Payment</field>
+        <field name="code">tamara</field>
+        <field name="active">False</field>
+        <field
+            name="image"
+            type="base64"
+            file="oe_tamara_payment_integration/static/src/img/tamara.png"
+        />
+        <field name="support_tokenization">False</field>
+        <field name="support_refund">partial</field>
+    </record>
+
+
+    <record id="tamara_payment_provider" model="payment.provider">
+        <field name="name">Tamara Payment</field>
+        <field name="code">tamara</field>
+        <field name="state">disabled</field>
+        <field name="tamara_merchant_token">dummydata</field>
+        <field name="company_id" ref="base.main_company" />
+        <field
+            name="redirect_form_view_id"
+            ref="oe_tamara_payment_integration.tamara_form"
+        />
+        <field
+            name="image_128"
+            type="base64"
+            file="oe_tamara_payment_integration/static/src/img/tamara.png"
+        />
+        <field
+            name="payment_method_ids"
+            eval="[Command.set([
+                         ref('oe_tamara_payment_integration.payment_tamara_connect'),
+                     ])]"
+        />
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+<odoo>
+    <template id="tamara_form">
+        <form t-att-action="tamara_form" method="get">
+            <input type="hidden" name="checkoutUrl" t-att-value="tamara_checkout_url" />
+        </form>
+    </template>
+</odoo>
