@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+     <record id="res_config_settings_view_form" model="ir.ui.view">
+          <field name="name">res.config.settings.tamara.view.form</field>
+          <field name="model">res.config.settings</field>
+          <field name="priority" eval="25" />
+         <field
+            name="inherit_id"
+            ref="base_setup.res_config_settings_view_form"
+        />
+          <field name="arch" type="xml">
+              <xpath expr="//div[@name='integration']" position="after">
+                  <h2>Payment Tamara</h2>
+                  <div
+                    class="row mt16 o_settings_container"
+                    id="payment_tamara_settings"
+                >
+                    <div
+                        class="col-12 col-lg-offset-6 col-lg-6 o_setting_box"
+                        id="product_widget_setting"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="product_widget" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="product_widget" />
+                            <div class="text-muted">
+                                Enable/disable the product widget configuration
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="row mt16 o_settings_container"
+                    attrs="{'invisible': [('product_widget', '=', False)]}"
+                    id="payment_tamara_settings"
+                >
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        id="data_payment_type_setting"
+                    >
+
+                        <div class="o_setting_right_pane">
+                            <label
+                                string="Exclude products"
+                                for="data_exclude_products"
+                            />
+                            <div class="text-muted">
+                                Exclude products from product widget
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    class="col-lg-4 o_light_label"
+                                    string="Exclude Products"
+                                    for="data_exclude_products"
+                                />
+                                <field
+                                    class="col-lg-4"
+                                    style="margin-left: 60px;"
+                                    name="data_exclude_products"
+                                    widget="many2many_tags"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        id="data_payment_type_setting"
+                    >
+
+                        <div class="o_setting_right_pane">
+                            <label
+                                string="Change your Payment Type"
+                                for="data_payment_type"
+                            />
+                            <div class="text-muted">
+                                The payment type that you want to show
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    class="col-lg-4 o_light_label "
+                                    string="Payment Type"
+                                    for="data_payment_type"
+                                />
+                                <field
+                                    class="col-lg-4"
+                                    style="margin-left: 60px;"
+                                    name="data_payment_type"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        id="data_paylater_and_installment_setting"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="data_disable_installment" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="data_disable_installment" />
+                            <div class="text-muted">
+                                The flag allow you disabled installment popup.
+                            </div>
+                        </div>
+                        <div class="o_setting_left_pane">
+                            <field name="data_disable_paylater" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label
+                                string="Disable Paylater"
+                                for="data_disable_paylater"
+                            />
+                            <div class="text-muted">
+                                The flag allow you disable paylater popup.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                  <div
+                    class="row mt16 o_settings_container"
+                    attrs="{'invisible': ['|',('data_disable_installment', '=', True),('product_widget', '=', False)]}"
+                    id="payment_tamara_settings"
+                >
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="data_installment_maximum_amount" />
+                            <div class="text-muted">
+                                The maximum amount will be accepted pay by installment.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="data_installment_maximum_amount"
+                                        class="oe_inline"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="data_installment_minimum_amount" />
+                            <div class="text-muted">
+                                The minimum amount will be accepted pay by installment.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="data_installment_minimum_amount"
+                                        class="oe_inline"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+                  <div
+                    class="row mt16 o_settings_container"
+                    id="payment_tamara_settings"
+                >
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': ['|',('data_disable_installment', '=', True),('product_widget', '=', False)]}"
+                    >
+                        <div class="o_setting_right_pane">
+                            <label for="data_installment_available_amount" />
+                            <div class="text-muted">
+                                The available amount will be shown in popup content.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="data_installment_available_amount"
+                                        class="oe_inline"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': ['|',('data_disable_paylater', '=', True),('product_widget', '=', False)]}"
+                    >
+                        <div class="o_setting_right_pane">
+                            <label for="data_pay_later_max_amount" />
+                            <div class="text-muted">
+                                The maximum amount will be accepted pay by later.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="data_pay_later_max_amount"
+                                        class="oe_inline"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': ['|',('data_disable_installment', '=', True),('product_widget', '=', False)]}"
+                    >
+                        <div class="o_setting_right_pane">
+                            <label
+                                string="No of Installments"
+                                for="data_number_of_installments"
+                            />
+                            <div class="text-muted">
+                                Select No of Installments
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    class="col-lg-4 o_light_label "
+                                    string="No of Installments"
+                                    for="data_number_of_installments"
+                                />
+                                <field
+                                    class="col-lg-4"
+                                    style="margin-left: 60px;"
+                                    name="data_number_of_installments"
+                                />
+                            </div>
+                        </div>
+                    </div>
+				</div>
+              </xpath>
+          </field>
+     </record>
+</odoo>
