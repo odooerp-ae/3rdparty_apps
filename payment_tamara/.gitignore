@@ -1,7 +1,0 @@
-#Files to be ignored
-
-*.py[co]
-
-#Directories to be ignored
-
-__pycache__/
