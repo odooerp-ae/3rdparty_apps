@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- <template id="payment_tabby_product_widget" inherit_id="website_sale.product_price">
+            <xpath expr="//div//h3[hasclass('decimal_precision')]" position="after">
+                <t t-set="tabby_acq"
+                    t-value="request.env['payment.provider'].sudo().search([('code','=','tabby'),('state','in',['test','enabled'])],limit=1)" />
+                <t t-if="tabby_acq">
+                    <script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+                    <t t-set="current_website" t-value="request.env['website'].get_current_website()"/>
+                    <t t-set="session_lang" t-value="request.session.context.get('lang','en')"/>
+
+                    <script> new TabbyPromo({ selector: '#TabbyPromo', currency: '<t t-esc="website.currency_id.name" />', price: '<t t-esc="combination_info['price']" />', installmentsCount:<t t-esc="current_website.tabby_data_number_of_installments  if current_website.tabby_data_number_of_installments else 4"/>, lang: '<t t-esc="request.env.lang.split('_')[0]" />', source: 'product', publicKey: '<t t-esc="tabby_acq.tabby_public_key" />', merchantCode: '<t t-esc="tabby_acq.tabby_merchant_code" />' }); </script>
+                    <div id="TabbyPromo"></div>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="oe_inherit_product" inherit_id="website_sale.product" active="True" name="Tabby Promo">
+            <xpath expr="//div[@id='product_details']//form//div[hasclass('js_main_product')]//div[1]" position="inside">
+                <t t-set="tabby_acq"
+                        t-value="request.env['payment.provider'].sudo().search([('code','=','tabby'),('state','in',['test','enabled'])],limit=1)" />
+                <t t-if="tabby_acq">
+                    <script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+                    <t t-set="current_website" t-value="request.env['website'].get_current_website()"/>
+                    <t t-set="session_lang" t-value="request.session.context.get('lang','en')"/>
+
+                    <script> new TabbyPromo({ selector: '#TabbyPromo', currency: '<t
+                            t-esc="website.currency_id.name" />', price: '<t
+                            t-esc="combination_info['price']" />', installmentsCount:
+                            <t t-esc="current_website.tabby_data_number_of_installments  if current_website.tabby_data_number_of_installments else 2"/>, lang: '<t
+                            t-esc="request.env.lang.split('_')[0]" />', source: 'product',
+                        publicKey: '<t t-esc="tabby_acq.tabby_public_key" />', merchantCode: '<t
+                            t-esc="tabby_acq.tabby_merchant_code" />' }); </script>
+                    <div id="TabbyPromo"></div>
+                </t>
+            </xpath>
+        </template> -->
+
+
+        <!--        <template id="oe_inherit_product" inherit_id="website_sale.product" active="True" name="Tabby Promo">-->
+        <!--            <xpath expr="//div[@class='category-mobile-pd']" position="before">-->
+        <!--                <t t-set="tabby_acq"-->
+        <!--                        t-value="request.env['payment.provider'].sudo().search([('code','=','tabby'),('state','in',['test','enabled'])],limit=1)" />-->
+        <!--                <t t-if="tabby_acq">-->
+        <!--                    <div class="col-12 col-lg-9 pb-2">-->
+        <!--                        <script src="https://checkout.tabby.ai/tabby-promo.js"></script>-->
+        <!--                        <t t-set="current_website" t-value="request.env['website'].get_current_website()"/>-->
+        <!--                        <t t-set="session_lang" t-value="request.session.context.get('lang','en')"/>-->
+
+        <!--                        <script> new TabbyPromo({ selector: '#TabbyPromo', currency: '<t-->
+        <!--                                t-esc="website.currency_id.name" />', price: '<t-->
+        <!--                                t-esc="combination_info['price']" />', installmentsCount:-->
+        <!--                                <t t-esc="current_website.tabby_data_number_of_installments  if current_website.tabby_data_number_of_installments else 2"/>, lang: '<t-->
+        <!--                                t-esc="request.env.lang.split('_')[0]" />', source: 'product',-->
+        <!--                            publicKey: '<t t-esc="tabby_acq.tabby_public_key" />', merchantCode: '<t-->
+        <!--                                t-esc="tabby_acq.tabby_merchant_code" />' }); </script>-->
+        <!--                        <div id="TabbyPromo"></div>-->
+        <!--                    </div>-->
+        <!--                </t>-->
+        <!--            </xpath>-->
+        <!--        </template>-->
+
+
+        <template id="oe_inherit_product" inherit_id="website_sale.product" active="True" name="Tabby Promo">
+            <xpath expr="//div[@id='product_details']" position="inside">
+                <t t-set="tabby_acq"
+                   t-value="request.env['payment.provider'].sudo().search([('code','=','tabby'),('state','in',['test','enabled'])], limit=1)"/>
+                <t t-if="tabby_acq">
+                    <div class="col-12 col-lg-9 pb-2">
+                        <script src="https://checkout.tabby.ai/tabby-promo.js"></script>
+                        <t t-set="current_website" t-value="request.env['website'].get_current_website()"/>
+                        <t t-set="session_lang" t-value="request.session.context.get('lang', 'en')"/>
+
+                        <script>
+                            new TabbyPromo({
+                            selector: '#TabbyPromo',
+                            currency: '<t t-esc="website.currency_id.name"/>',
+                            price: '<t t-esc="combination_info['price']"/>',
+                            installmentsCount:<t t-esc="current_website.tabby_data_number_of_installments or 2"/>,
+                            lang: '<t t-esc="request.env.lang.split('_')[0]"/>',
+                            source: 'product',
+                            publicKey: '<t t-esc="tabby_acq.tabby_public_key"/>',
+                            merchantCode: '<t t-esc="tabby_acq.tabby_merchant_code"/>'
+                            });
+                        </script>
+                        <div id="TabbyPromo"></div>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+
+        <!--        <template id="payment_tabby_payment_checkout_widget" inherit_id="payment.checkout">-->
+        <!--            <xpath expr="//div[@name='o_payment_option_card']/div[hasclass('text-muted')]" position="after">-->
+        <!--                <t t-if="provider.code == 'tabby'">-->
+        <!--                    <t t-set="website_sale_order" t-value="website.sale_get_order()" />-->
+        <!--                    <t t-set="sale_amount" t-value="website_sale_order.amount_total" />-->
+        <!--                    <t t-if="request.httprequest.args.get('amount') is not None">-->
+        <!--                        <t t-set="sale_amount" t-value="float(request.httprequest.args.get('amount'))" />-->
+        <!--                    </t>-->
+        <!--                    <script src="https://checkout.tabby.ai/tabby-card.js"></script>-->
+        <!--                    <script> new TabbyCard({ selector: '#tabbyCard', currency: '<t t-esc="website.currency_id.name" />', lang: '<t t-esc="request.env.lang.split('_')[0]" />', price: <t t-esc="sale_amount" />, size: 'wide', header: true, merchantCode: '<t t-esc="provider.tabby_merchant_code" />' }); </script>-->
+        <!--                    <div class="card">-->
+        <!--                        <div class="p-2 tabby_error_alert" style="display: none">-->
+        <!--                            <div class="alert alert-danger p-2">Sorry Tabby is unable to approve this purchase, please use an alternatnive payment method for your order.</div>-->
+        <!--                        </div>-->
+        <!--                        <div class="card-body" id="tabbyCard"></div>-->
+        <!--                    </div>-->
+        <!--                </t>-->
+        <!--            </xpath>-->
+        <!--        </template>-->
+
+    </data>
+</odoo>
