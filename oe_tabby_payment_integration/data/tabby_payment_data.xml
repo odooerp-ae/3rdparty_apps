@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="tabby_payment_connect" model="payment.provider">
+            <field name="name">Tabby Payment</field>
+            <field name="image_128" type="base64"
+                file="oe_tabby_payment_integration/static/src/img/tabby-badge.png" />
+            <field name="code">tabby</field>
+            <field name="state">disabled</field>
+            <field name="redirect_form_view_id" ref="oe_tabby_payment_integration.tabby_form" />
+            <field name="company_id" ref="base.main_company" />
+            <field name="tabby_public_key">dummydata</field>
+            <field name="tabby_secret_key">dummydata</field>
+            <field name="tabby_merchant_code">dummydata</field>
+        </record>
+
+        <record id="payment_tabby_connect" model="account.payment.method">
+            <field name="name">Tabby payment</field>
+            <field name="code">tabby</field>
+            <field name="payment_type">inbound</field>
+        </record>
+    </data>
+</odoo>
