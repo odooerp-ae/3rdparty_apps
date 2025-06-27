@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <template
+        id="oe_inherit_product"
+        inherit_id="website_sale.product"
+        active="False"
+        name="Tabby Promo"
+    >
+            <xpath expr="//div[@id='product_details']" position="inside">
+                <script src="https://cdn.tamara.co/widget/product-widget.min.js" />
+
+                <t
+                t-set="tamara_acq"
+                t-value="request.env['payment.provider'].sudo().search([('code','=','tamara'),('state','in',['test','enabled'])], limit=1)"
+            />
+
+                <t t-if="tamara_acq">
+                    <div class="col-12 col-lg-9 pb-2">
+                        <div
+                        class="tamara-product-widget"
+                        t-att-data-lang="request.env.lang.split('_')[0]"
+                        t-att-data-price="combination_info['price']"
+                        t-att-data-currency="tamara_acq.currency_id.name"
+                        t-att-data-payment-type="tamara_acq.data_payment_type"
+                        t-att-data-disable-installment="str(tamara_acq.data_disable_installment).lower()"
+                        t-att-data-disable-paylater="str(tamara_acq.data_disable_paylater).lower()"
+                        t-att-data-installment-minimum-amount="tamara_acq.data_installment_minimum_amount"
+                        t-att-data-installment-maximum-amount="tamara_acq.data_installment_maximum_amount"
+                        t-att-data-installment-available-amount="tamara_acq.data_installment_available_amount"
+                        t-att-data-pay-later-max-amount="tamara_acq.data_pay_later_max_amount"
+                    />
+                    </div>
+                </t>
+            </xpath>
+        </template>
+</odoo>
